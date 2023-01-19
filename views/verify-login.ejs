@@ -25,7 +25,7 @@
       <div class="container-tight py-4">
         <form
           class="card card-md"
-          action="/login"
+          action="/verify-login"
           method="post"
           autocomplete="off"
         >
@@ -65,13 +65,13 @@
                   aria-label="close"
                 ></a>
               </div>
-              <% } %> <% if (typeof verifyEmail !== 'undefined') { %>
-              <div class="alert alert-warning alert-dismissible" role="alert">
+              <% } %> <% if(typeof verify !== 'undefined'){ %>
+              <div class="alert alert-success alert-dismissible" role="alert">
                 <div class="d-flex">
-                  <div class="text-warning" style="margin-right: 5px">
+                  <div class="text-success" style="margin-right: 5px">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="icon icon-tabler icon-tabler-alert-triangle"
+                      class="icon icon-tabler icon-tabler-check"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -82,14 +82,11 @@
                       stroke-linejoin="round"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M12 9v2m0 4v.01"></path>
-                      <path
-                        d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"
-                      ></path>
+                      <path d="M5 12l5 5l10 -10"></path>
                     </svg>
                   </div>
                   <div>
-                    <h4 class="alert-title"><%= verifyEmail %></h4>
+                    <h4 class="alert-title"><%= verify %></h4>
                   </div>
                 </div>
                 <a

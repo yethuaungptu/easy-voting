@@ -9,8 +9,16 @@ router.get("/vote-give", indexController.voteGive);
 
 router.get("/login", indexController.login);
 
+router.post("/login", indexController.loadLogin);
+
 router.get("/forget-password", indexController.forgetPassword);
 
 router.get("/sign-up", indexController.signUp);
 
-module.exports = router;
+router.post("/sign-up", indexController.loadSignUp);
+
+router.get("/verify-login", indexController.verifyLogin);
+
+router.post("/verify-login", indexController.loadVerifyLogin);
+
+module.exports = router; 
