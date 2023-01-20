@@ -2,8 +2,10 @@ var express = require("express");
 var router = express.Router();
 const adminController = require("../controller/adminController");
 const { adminAuth } = require("../middleware/admin-auth");
+const multer = require("multer");
+const upload = multer({ dest: "public/images/upload" });
 
-router.get("/", adminAuth, adminController.dashboard);
+router.get("/", upload.single("image"), adminAuth, adminController.dashboard);
 
 router.get("/login", adminController.login);
 

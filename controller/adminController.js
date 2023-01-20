@@ -68,14 +68,15 @@ exports.campaignList = (req, res) => {
 };
 
 exports.loadCampaignList = (req, res) => {
-  const { title, description, select, image } = req.body;
-  var campaign = new Campaign({
-    title,
-    description,
-    select,
-    image,
-  });
-  var newCampaign = campaign.save();
+  var campaign = new Campaign();
+  console.log("status:", req.body.image);
+  campaign.title = req.body.title;
+  campaign.description = req.body.description;
+  campaign.select = req.body.select;
+  console.log(req.file);
+  if (req.file) campaign.image = "/images/upload/" + req.file.filename;
+  campaign.save();
+
   let opt = req.body.select;
   if (opt == "1") {
     res.redirect("/admin/king-queen");
