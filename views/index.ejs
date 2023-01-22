@@ -15,126 +15,130 @@
   <body>
     <% include ./partials/nav %>
 
-    <!-- click vote start  -->
-    <div
-      class="container-xl"
-      style="
-        height: auto;
-        background-image: url(/images/img/vote-bg.png);
-        background-size: cover;
-      ">
-      <div class="row">
-      <div class="col-4 "></div>
-      <div class="col-lg-4 col-sm-12 col-md-12  " style="padding-top: 280px;">
-        <div class="card-body">
-          <!-- <div id="carousel-indicators" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators " style="border-radius: 30px;">
-              <li data-bs-target="#carousel-indicators" data-bs-slide-to="0" class="active"></li>
-              <li data-bs-target="#carousel-indicators" data-bs-slide-to="1" class=""></li>
-              <li data-bs-target="#carousel-indicators" data-bs-slide-to="2" class=""></li>
-              <li data-bs-target="#carousel-indicators" data-bs-slide-to="3" class=""></li>
-              <li data-bs-target="#carousel-indicators" data-bs-slide-to="4" class=""></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <a href="/vote-give">
-                  <img class="d-block w-10" alt="" src="images/img.jpg">
-                </a>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-10" alt="" src="images/img_one.jpg">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-10" alt="" src="images/img_two.jpg">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-10" alt="" src="images/img_three.jpg">
-              </div>
-              <div class="carousel-item ">
-                <img class="d-block w-10" alt="" src="images/profile.jpg ">
-              </div>
-            </div>
-            <a class="carousel-control-prev bg-azure-lt" href="#carousel-indicators" role="button" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next bg-azure-lt" href="#carousel-indicators" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </a>
-          </div> -->
-          <a href="/vote-give">
-            <div class="card" style="border-radius: 30px;">
-              <img src="images/img.jpg" alt=""  style="border-radius: 30px; box-shadow: 1px 7px rgba(46, 49, 65, 0.596);">
-            </div>
-          </a>
+    <div class="container">
+      <img src="/images/img/vote-bg.png" alt="">
+      <hr>
+      <!-- <h2><%= locals.user ? locals.user.email : 'Unknow User' %></h2> -->
+      <div>
+        <h2 style="margin-bottom: 30px;">King & Queen Selection Recent Campaign</h2>
+        <div class="row">
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">King & Queen Selection 2022</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="/campaign-detail" class="card-footer btn btn-primary">View</a>
+          </div>
+
+          <!-- delete start  -->
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">King & Queen Selection 2022</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="/campaign-detail" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">King & Queen Selection 2022</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="/campaign-detail" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">King & Queen Selection 2022</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">King & Queen Selection 2022</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">King & Queen Selection 2022</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <!-- delete end -->
         </div>
       </div>
-      <div class="col-4 "></div>
-    </div>
-    </div>
- 
-    <!-- click vote end  -->
-
-    
-
- 
-
-        <!-- about start  -->
-        <div class="card-header">
-          <h3 class="card-title">About</h3>
-        </div>
-        <!-- left side start  -->
-        <div class="col-12">
-          <div class="card">
-            <div class="row row-0">
-              <div class="col-12 col-md-4 col-lg-4">
-                <img
-                  src="images/profile.jpg"
-                  class="w-100 h-100 object-cover"
-                  alt="Card side image"
-                />
-              </div>
-              <div class="col-12 col-md-8 col-lg-8">
-                <div class="card-body">
-                  <h3 class="card-title">Card with left side image</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Aperiam deleniti fugit incidunt, iste, itaque minima neque
-                    pariatur perferendis sed suscipit velit vitae voluptatem.
-                  </p>
-                </div>
-              </div>
-            </div>
+      <!-- project  -->
+      <hr>
+      <div class="mt-3">
+        <h2 style="margin-bottom: 30px;">Project Communication Recent Campaign</h2>
+        <div class="row">
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="/campaign-detail" class="card-footer btn btn-primary">View</a>
           </div>
-        </div>
-        <!-- left side end -->
-        <!-- right side start  -->
-        <div class="col-12">
-          <div class="card">
-            <div class="row row-0">
-              <div class="col-12 col-md-8 col-lg-8">
-                <div class="card-body">
-                  <h3 class="card-title">Card with left side image</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Aperiam deleniti fugit incidunt, iste, itaque minima neque
-                    pariatur perferendis sed suscipit velit vitae voluptatem.
-                  </p>
-                </div>
-              </div>
-              <div class="col-12 col-md-4 col-lg-4">
-                <img
-                  src="images/profile.jpg"
-                  class="w-100 h-100 object-cover"
-                  alt="Card side image"
-                />
-              </div>
-            </div>
+
+          <!-- delete start  -->
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
           </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <!-- delete end -->
         </div>
-    <!-- right side end -->
-    <!-- about end -->
+      </div>
+      <!-- other  -->
+      <hr>
+      <div class="mt-3">
+        <h2 style="margin-bottom: 30px;">Other Recent Campaign</h2>
+        <div class="row">
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Other Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="/campaign-detail" class="card-footer btn btn-primary">View</a>
+          </div>
+
+          <!-- delete start  -->
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Other Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Other Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Other Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Other Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <div class="card col-lg-4 col-md-4 col-sm-6">
+            <h1 class="card-title" style="text-align: center; margin-top: 5px;">Other Project 2023</h1>
+            <img src="/images/profile.jpg" alt="">
+            <a href="#" class="card-footer btn btn-primary">View</a>
+          </div>
+          <!-- delete end -->
+        </div>
+      </div>
+    </div>
+
     <!-- footer start  -->
     <% include ./partials/footer %>
     <!-- footer end -->

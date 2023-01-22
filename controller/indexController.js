@@ -33,7 +33,7 @@ exports.loadLogin = (req, res) => {
           email: rtn.email,
           password: rtn.password,
         };
-        res.redirect("/vote-give");
+        res.redirect("/");
       } else {
         res.render("login", { message: "something wrong!" });
       }
@@ -156,4 +156,8 @@ exports.campaignList = (req, res) => {
 
 exports.voteResult = (req, res) => {
   res.render("vote-result");
+};
+
+exports.campaignDetail = (req, res) => {
+  res.render("campaign-detail");
 };
