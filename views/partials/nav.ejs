@@ -82,35 +82,41 @@
           </div>
         </div>
       </div>
-      <div class="nav-item dropdown">
-        <a
-          href="#"
-          class="nav-link d-flex lh-1 text-reset p-0"
-          data-bs-toggle="dropdown"
-          aria-label="Open user menu"
-        >
-          <span
-            class="avatar avatar-sm"
-            style="background-image: url(/images/svg/profile.svg)"
-          ></span>
-          <div class="d-none d-xl-block ps-2">
-            <div>Kellie Skingley</div>
-          </div>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <span
-            ><img
-              style="margin-left: 10px"
-              src="../images/svg/admin-user-mail.svg"
-              alt=""
-              width="20px"
-            />
-            mg@gmail.com</span
+      <div>
+        <% if(locals.user) { %>
+        <div class="nav-item dropdown">
+          <a
+            href="#"
+            class="nav-link d-flex lh-1 text-reset p-0"
+            data-bs-toggle="dropdown"
+            aria-label="Open user menu"
           >
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">Change Password</a>
-          <a href="#" class="dropdown-item">Logout</a>
+            <span
+              class="avatar avatar-sm"
+              style="background-image: url(/images/svg/profile.svg)"
+            ></span>
+            <div class="d-none d-xl-block ps-2">
+              <div>Kellie Skingley</div>
+            </div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+            <span
+              ><img
+                style="margin-left: 10px"
+                src="../images/svg/admin-user-mail.svg"
+                alt=""
+                width="20px"
+              />
+              mg@gmail.com</span
+            >
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">Change Password</a>
+            <a href="/logout" class="dropdown-item">Logout</a>
+          </div>
         </div>
+        <% }else{ %>
+        <button>login</button>
+        <% } %>
       </div>
     </div>
   </div>
@@ -145,7 +151,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#vote-list">
+            <a class="nav-link" href="/campaign-list">
               <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <img
                   src="images/svg/list.svg"

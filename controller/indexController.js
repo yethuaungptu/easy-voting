@@ -27,7 +27,13 @@ exports.loadLogin = (req, res) => {
         User.compare(req.body.password, rtn.password) &&
         rtn.verify == true
       ) {
-        res.redirect("/");
+        req.session.user = {
+          id: rtn._id,
+          name: rtn.name,
+          email: rtn.email,
+          password: rtn.password,
+        };
+        res.redirect("/vote-give");
       } else {
         res.render("login", { message: "something wrong!" });
       }
@@ -82,6 +88,16 @@ exports.signUp = (req, res) => {
 exports.loadSignUp = async (req, res) => {
   let checkEmail = req.body.email;
   if (checkEmail.endsWith("@gmail.com")) {
+    User.findOne({ email: req.body.email }, (err, rtn, next) => {
+      if (err) throw err;
+      if (rtn.email == req.body.email && rtn.verify == false) {
+        User.deleteOne({ email: req.body.email }, (err2) => {
+          if (err2) throw err2;
+        });
+      } else {
+        next();
+      }
+    });
     const { name, email, password } = req.body;
     let user = new User({
       name,
@@ -115,7 +131,6 @@ exports.verifyLogin = async (req, res) => {
 
 exports.loadVerifyLogin = (req, res) => {
   User.findOne({ email: req.body.email }, (err, rtn) => {
-    console.log(rtn);
     if (
       rtn != null &&
       User.compare(req.body.password, rtn.password) &&
@@ -126,4 +141,19 @@ exports.loadVerifyLogin = (req, res) => {
       res.render("verify-login", { message: "something wrong!" });
     }
   });
+};
+
+exports.userLogout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+    res.redirect("/");
+  });
+};
+
+exports.campaignList = (req, res) => {
+  res.render("campaign-list");
+};
+
+exports.voteResult = (req, res) => {
+  res.render("vote-result");
 };

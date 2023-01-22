@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
-
 const indexController = require("../controller/indexController");
+const { voteAuth } = require("../middleware/user-auth");
 
 router.get("/", indexController.index);
 
-router.get("/vote-give", indexController.voteGive);
+router.get("/vote-give", voteAuth, indexController.voteGive);
 
 router.get("/login", indexController.login);
 
 router.post("/login", indexController.loadLogin);
+
+router.get("/logout", indexController.userLogout);
 
 router.get("/forget-password", indexController.forgetPassword);
 
@@ -21,4 +23,8 @@ router.get("/verify-login", indexController.verifyLogin);
 
 router.post("/verify-login", indexController.loadVerifyLogin);
 
-module.exports = router; 
+router.get("/campaign-list", indexController.campaignList);
+
+router.get("/vote-result", indexController.voteResult);
+
+module.exports = router;

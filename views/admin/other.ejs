@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Other</title>
     <!-- CSS files -->
-    <link href="../stylesheets/css/tabler.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/demo.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/customize.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/customize.css" rel="stylesheet" />
   </head>
   <body>
     <!-- admin nav start  -->
@@ -95,27 +95,27 @@
               >
                 <span
                   class="avatar avatar-sm"
-                  style="background-image: url(../images/svg/admin-profile.svg)"
+                  style="background-image: url(/images/svg/admin-profile.svg)"
                 ></span>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <span>
                   <img
                   style="margin-left: 10px;"
-                    src="../images/svg/admin-user-name.svg"
+                    src="/images/svg/admin-user-name.svg"
                     alt="Name"
                     width="20px"
                   />
-                  <%= admin.name %>
+                  Admin
                 </span><br>
                 <span>
                   <img
                     style="margin-left: 10px;"
-                    src="../images/svg/admin-user-mail.svg"
+                    src="/images/svg/admin-user-mail.svg"
                     alt="Mail"
                     width="20px"
                   />
-                 <%= admin.email %>
+                 admin@gmail.com
                 </span>
                 <div class="dropdown-divider"></div>
                 <a href="/admin/change-password" class="dropdown-item">Change Password</a>
@@ -153,6 +153,11 @@
                     <span class="nav-link-title">Other</span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/create">
+                    <span class="nav-link-title">Create</span>
+                  </a>
+                </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="/admin/campaign-detail">
                     <span class="nav-link-title"> Campaign Detail </span>
@@ -167,7 +172,38 @@
     </div>
     <!-- admi nav end  -->
  
-
+       <!-- campaign list start  -->
+       <div class="page-body">
+        <div class="container-xl">
+          <div class="row row-cards">
+        <% for (var i = 0; i < data.length; i++) { %> 
+            <div class="col-sm-6 col-lg-4">
+              <div class="card card-sm">
+                <a href="#" class="d-block"><img src="<%= data[i].image %>" class="card-img-top"></a>
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                          <div class="campaign-name"><%= data[i].title %></div>
+                        </div>
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-6">
+                              <a href="/admin/campaign-detail/<%= data[i].id %>" class="btn btn-primary">Detail</a>
+                            </div>
+                            <div class="col-6">
+                              <a href="/admin/campaign-delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <!-- campaign list end -->
      
       <!-- footer start  -->
     <footer class="footer footer-transparent d-print-none">
@@ -243,8 +279,8 @@
 
 
 
-    <script src="../javascripts/js/demo.min.js"></script>
-    <script src="../javascripts/js/tabler.min.js"></script>
-    <script src="../javascripts/js/customize.js"></script>
+    <script src="/javascripts/js/demo.min.js"></script>
+    <script src="/javascripts/js/tabler.min.js"></script>
+    <script src="/javascripts/js/customize.js"></script>
   </body>
 </html>
