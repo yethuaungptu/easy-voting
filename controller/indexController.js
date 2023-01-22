@@ -86,18 +86,7 @@ exports.signUp = (req, res) => {
   res.render("sign-up");
 };
 exports.loadSignUp = async (req, res) => {
-  let checkEmail = req.body.email;
-  if (checkEmail.endsWith("@gmail.com")) {
-    User.findOne({ email: req.body.email }, (err, rtn, next) => {
-      if (err) throw err;
-      if (rtn.email == req.body.email && rtn.verify == false) {
-        User.deleteOne({ email: req.body.email }, (err2) => {
-          if (err2) throw err2;
-        });
-      } else {
-        next();
-      }
-    });
+  function login() {
     const { name, email, password } = req.body;
     let user = new User({
       name,
@@ -113,6 +102,29 @@ exports.loadSignUp = async (req, res) => {
         ckeck: "Check your email to confirm",
       });
     }
+  }
+
+  let checkEmail = req.body.email;
+  if (checkEmail.endsWith("@gmail.com")) {
+    User.findOne({ email: req.body.email }, (err, rtn) => {
+      if (err) throw err;
+      if (rtn == null) {
+        login();
+      } else {
+        if (rtn != null && rtn.email == req.body.email && rtn.verify == false) {
+          User.deleteOne({ email: req.body.email }, (err2) => {
+            if (err2) throw err2;
+          });
+          login();
+        } else {
+          if (rtn != null && rtn.verify == true) {
+            res.render("sign-up", {
+              message: "Email is exit! Try another email.",
+            });
+          }
+        }
+      }
+    });
   } else {
     res.render("sign-up", { message: "Sign Up With @edu.mm" });
   }
@@ -136,6 +148,12 @@ exports.loadVerifyLogin = (req, res) => {
       User.compare(req.body.password, rtn.password) &&
       rtn.verify == true
     ) {
+      req.session.user = {
+        id: rtn._id,
+        name: rtn.name,
+        email: rtn.email,
+        password: rtn.password,
+      };
       res.redirect("/");
     } else {
       res.render("verify-login", { message: "something wrong!" });
