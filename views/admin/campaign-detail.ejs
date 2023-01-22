@@ -172,19 +172,63 @@
     </div>
     <!-- admi nav end  -->
 
- 
-    <h1><%= data.title %></h1>
-    <img src="<%= data.image %>" alt="">
-    <a href="/admin/campaign-data/<%= data.id %>" class="btn btn-primary">add</a>     
 
     <div>
-      <% for(var i = 0; i < user.length; i++) { %> 
-        <h2><%= user[i].name %></h2>
-        <img src="<%= user[i].image %>" alt=""> 
-        <p><%= user[i].description %></p>
-        <a href="/admin/user-delete/<%= user[i].id %>"> delete</a>
-      <% } %>
+       
+        <h2></h2>
+        <img src="" alt=""> 
+
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <div class="col-3"></div>
+          <div class="col-1"></div>
+        </div>
+        
+        
+      
     </div>
+
+    <div class="container-xl">
+      <div class="card" style="margin-top: 20px;">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-12">
+            <img src="<%= data.image %>" alt="">
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <h1><%= data.title %></h1>
+            <p><%= data.description %></p>
+          </div>
+        </div>
+        <div class="card-footer" style="text-align: end;padding:30px;">
+          <a href="/admin/campaign-data/<%= data.id %>" class="btn btn-primary">add campaign item</a>  
+        </div>
+        <div class="row">
+        <% for(var i = 0; i < user.length; i++) { %>
+          <div class="card col-lg-4 col-md-4 col-sm-6" style="padding: 10px;">
+            <div class="row">
+              <div class="col-6">
+                <img src="<%= user[i].image %>" alt="">
+              </div>
+              <div class="col-6">
+                <h1>Name</h1>
+                <h3><%= user[i].name %></h3>
+                
+              </div>
+            </div>
+            <div>
+              <h1>Description</h1>
+                <p><%= user[i].description %></p>
+            </div>
+            <div style="text-align: end;">
+              <a href="#" class="btn btn-outline">Update</a>
+              <a href="/admin/user-delete/<%= user[i].id %>" class="btn btn-danger" >Delete</a>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        
+      </div>
+    </div>
+
       <!-- footer start  -->
     <footer class="footer footer-transparent d-print-none">
       <div class="container-xl">
@@ -261,6 +305,5 @@
 
     <script src="/javascripts/js/demo.min.js"></script>
     <script src="/javascripts/js/tabler.min.js"></script>
-    <script src="/javascripts/js/customize.js"></script>
   </body>
 </html>
