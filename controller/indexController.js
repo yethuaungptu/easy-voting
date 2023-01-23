@@ -17,25 +17,29 @@ exports.login = async (req, res) => {
 
 exports.loadLogin = (req, res) => {
   User.findOne({ email: req.body.email }, (err, rtn) => {
-    if (rtn.verify != true) {
-      res.render("login", {
-        verifyEmail: "Your email is not yet verified, so please confirm",
-      });
+    if (rtn == null) {
+      res.render("login", { message: "Create your account" });
     } else {
-      if (
-        rtn != null &&
-        User.compare(req.body.password, rtn.password) &&
-        rtn.verify == true
-      ) {
-        req.session.user = {
-          id: rtn._id,
-          name: rtn.name,
-          email: rtn.email,
-          password: rtn.password,
-        };
-        res.redirect("/");
+      if (rtn.verify != true) {
+        res.render("login", {
+          verifyEmail: "Your email is not yet verified, so please confirm",
+        });
       } else {
-        res.render("login", { message: "something wrong!" });
+        if (
+          rtn != null &&
+          User.compare(req.body.password, rtn.password) &&
+          rtn.verify == true
+        ) {
+          req.session.user = {
+            id: rtn._id,
+            name: rtn.name,
+            email: rtn.email,
+            password: rtn.password,
+          };
+          res.redirect("/");
+        } else {
+          res.render("login", { message: "something wrong!" });
+        }
       }
     }
   });
@@ -86,7 +90,7 @@ exports.signUp = (req, res) => {
   res.render("sign-up");
 };
 exports.loadSignUp = async (req, res) => {
-  function login() {
+  function register() {
     const { name, email, password } = req.body;
     let user = new User({
       name,
@@ -109,13 +113,13 @@ exports.loadSignUp = async (req, res) => {
     User.findOne({ email: req.body.email }, (err, rtn) => {
       if (err) throw err;
       if (rtn == null) {
-        login();
+        register();
       } else {
         if (rtn != null && rtn.email == req.body.email && rtn.verify == false) {
           User.deleteOne({ email: req.body.email }, (err2) => {
             if (err2) throw err2;
           });
-          login();
+          register();
         } else {
           if (rtn != null && rtn.verify == true) {
             res.render("sign-up", {
