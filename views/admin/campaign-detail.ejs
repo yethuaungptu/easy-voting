@@ -12,6 +12,7 @@
     <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/customize.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../node_modules/cropperjs/dist/cropper.min.css">
   </head>
   <body>
     <!-- admin nav start  -->
@@ -201,23 +202,22 @@
         <div class="card-footer" style="text-align: end;padding:30px;">
           <a href="/admin/campaign-data/<%= data.id %>" class="btn btn-primary">add campaign item</a>  
         </div>
-        <div class="row">
+        <div class="row" style="padding: 20px;">
         <% for(var i = 0; i < user.length; i++) { %>
           <div class="card col-lg-4 col-md-4 col-sm-6" style="padding: 10px;">
             <div class="row">
-              <div class="col-6">
-                <img src="<%= user[i].image %>" alt="">
+              <div class="col-6 card" style="padding: 5px;">
+                <img src="<%= user[i].image %>" alt="" width="384px" height="192px">
               </div>
               <div class="col-6">
-                <h1>Name</h1>
-                <h3><%= user[i].name %></h3>
-                
-              </div>
-            </div>
-            <div>
-              <h1>Description</h1>
+                <h4>Name : <%= user[i].name %></h4>
+                <h4>Description</h4>
                 <p><%= user[i].description %></p>
+              </div>
             </div>
+            <!-- <div>
+              
+            </div> -->
             <div style="text-align: end;">
               <a href="#" class="btn btn-outline">Update</a>
               <a href="/admin/user-delete/<%= user[i].id %>" class="btn btn-danger" >Delete</a>
@@ -301,9 +301,9 @@
     <!-- body end  -->
 
 
-
-
     <script src="/javascripts/js/demo.min.js"></script>
     <script src="/javascripts/js/tabler.min.js"></script>
+    <script src="../../node_modules/cropperjs/dist/cropper.min.js"></script>
+    <script src="/javascripts/js/cropperjs"></script>
   </body>
 </html>
