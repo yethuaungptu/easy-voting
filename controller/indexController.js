@@ -1,10 +1,21 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const User = require("../model/user");
+const Campaign = require("../model/campaign");
+const CampaignData = require("../model/campaignData");
 const SMTPConnection = require("nodemailer/lib/smtp-connection");
 
 exports.index = (req, res) => {
-  res.render("index");
+  Campaign.find({ select: "1" }, (err, rtn) => {
+    if (err) throw err;
+    Campaign.find({ select: "2" }, (err1, rtn1) => {
+      if (err1) throw err1;
+      Campaign.find({ select: "3" }, (err2, rtn2) => {
+        if (err2) throw err2;
+        res.render("index", { king: rtn, project: rtn1, other: rtn2 });
+      });
+    });
+  });
 };
 
 exports.voteGive = (req, res) => {
@@ -173,7 +184,16 @@ exports.userLogout = (req, res) => {
 };
 
 exports.campaignList = (req, res) => {
-  res.render("campaign-list");
+  Campaign.find({ select: "1" }, (err, rtn) => {
+    if (err) throw err;
+    Campaign.find({ select: "2" }, (err2, rtn2) => {
+      if (err2) throw err2;
+      Campaign.find({ select: "3" }, (err3, rtn3) => {
+        if (err3) throw err3;
+        res.render("campaign-list", { king: rtn, project: rtn2, other: rtn3 });
+      });
+    });
+  });
 };
 
 exports.voteResult = (req, res) => {
@@ -181,5 +201,11 @@ exports.voteResult = (req, res) => {
 };
 
 exports.campaignDetail = (req, res) => {
-  res.render("campaign-detail");
+  Campaign.findById(req.params.id, (err, rtn) => {
+    if (err) throw err;
+    CampaignData.find({ campaignId: req.params.id }, (err2, rtn2) => {
+      if (err2) throw err2;
+      res.render("campaign-detail", { kingCampaign: rtn, campaignData: rtn2 });
+    });
+  });
 };

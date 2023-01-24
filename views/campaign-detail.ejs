@@ -6,297 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campaign Detail</title>
     <!-- CSS files -->
-    <link href="stylesheets/css/tabler.min.css" rel="stylesheet" />
-    <link href="stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="stylesheets/css/demo.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gentium Book Basic">
+    <style>
+      .tit{
+            font-family: 'Fugaz One', serif;
+          }
+      .dtit{
+          font-family: 'Gentium Book Basic', serif;
+          }
+    </style>
   </head>
   <body>
     <% include ./partials/nav %>
     <div class="container">
-      <h1 style="margin-top: 10px">Canpanign Detail</h1>
+      <h1 class="tit" style="margin-top: 10px">Canpanign Detail</h1>
       <hr />
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 card" style="padding: 5px">
-          <img src="/images/profile.jpg" alt="" />
+          <img src="<%= kingCampaign.image %>" alt="" />
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12" style="margin-top: 10px;">
-          <h3>Campaign Title :King & Queen</h3>
-          <h3>Create Date : 23.4.2022</h3>
-          <h3>Exp Date : 12.5.2022</h3>
-          <h3>Description</h2>
+          <h3 class="dtit">Campaign Title : <%= kingCampaign.title %></h3>
+          <h3 class="dtit">Create Date : 23.4.2022</h3>
+          <h3 class="dtit">Exp Date : 12.5.2022</h3>
+          <h3 class="dtit">Description</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-            necessitatibus excepturi. Omnis saepe magnam sed ex enim assumenda
-            repellendus sequi?
+            <%= kingCampaign.description %>
           </p>
         </div>
       </div>
       <hr />
       <div>
-        <h1>Campaign Item</h1>
+        <h1 class="tit">Campaign Item</h1>
         <hr />
         <div class="row" style="padding: 5px">
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
+          <% for(var i = 0; i < campaignData.length; i ++){ %> 
+            <div class="card col-lg-3 col-md-4 col-sm-6">
+              <div class="row">
+                <div class="card" style="padding: 5px">
+                  <div style="text-align: center">
+                    <h1 class="card-title dtit" style="font-size: 25px;"><%= campaignData[i].name %></h1>
+                  </div>
+                  <img
+                    src="<%= campaignData[i].image %>"
+                    alt=""
+                    width="384px"
+                    height="192px"
+                  />
                 </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
               </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
+              <div>
+                <h3 class="dtit">Description</h3>
+                <p style="height: 50px;">
+                  <%= campaignData[i].description %>
+                </p>
               </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- delete item start -->
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
+              <div class="row" style="margin-bottom: 10px;">
+                <div class="col-6">
+                  <a href="#" class="btn btn-outline">Cancel</a>
                 </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
-              </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
+                <div class="col-6" style="text-align: end">
+                  <a href="#" class="btn btn-outline-success">Vote</a>
                 </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
               </div>
             </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
-                </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
-              </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
-                </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
-              </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
-                </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
-              </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
-                </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
-              </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <div class="card col-lg-3 col-md-4 col-sm-6">
-            <div class="row">
-              <div class="card" style="padding: 5px">
-                <div style="text-align: center">
-                  <h1 class="card-title">Mg Mg</h1>
-                </div>
-                <img
-                  src="/images/profile.jpg"
-                  alt=""
-                  width="384px"
-                  height="192px"
-                />
-              </div>
-            </div>
-            <div>
-              <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                incidunt facere adipisci voluptatem facilis, quos cumque
-                inventore cupiditate tempora repellendus dicta qui aspernatur
-                eius tenetur velit hic aut! Aperiam, alias!
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <a href="#" class="btn btn-outline">Cancel</a>
-              </div>
-              <div class="col-6" style="text-align: end">
-                <a href="#" class="btn btn-outline-success">Vote</a>
-              </div>
-            </div>
-          </div>
-          <!-- delete item end -->
+          <% } %>
         </div>
       </div>
     </div>
@@ -305,7 +85,7 @@
     <% include ./partials/footer %>
     <!-- footer end -->
 
-    <script src="javascripts/js/demo.min.js"></script>
-    <script src="javascripts/js/tabler.min.js"></script>
+    <script src="/javascripts/js/demo.min.js"></script>
+    <script src="/javascripts/js/tabler.min.js"></script>
   </body>
 </html>

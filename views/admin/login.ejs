@@ -30,6 +30,7 @@
               <input
                 type="email"
                 name="email"
+                id="email"
                 class="form-control"
                 placeholder="Enter email"
                 required
@@ -59,8 +60,14 @@
             </div>
             <div class="mb-2">
               <label class="form-check">
-                <input type="checkbox" class="form-check-input" />
-                <span class="form-check-label">Remember me on this device</span>
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberMe"
+                />
+                <span class="form-check-label" id="rememberMe"
+                  >Remember me on this device</span
+                >
               </label>
             </div>
             <div class="form-footer">
@@ -79,16 +86,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../javascripts/js/tabler.min.js"></script>
     <script src="../javascripts/js/show-hide.js"></script>
-    <!-- <script>
-      $(".show_hide").on("click", () => {
-        if ($(".input-box").type == "password") {
-          $(".input-box").type = "text";
-          $(".show_hide").classList.replace("fa-eye-slash", "fa-eye");
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+      $("#rememberMe").click(function () {
+        if ($("#rememberMe").prop("checked")) {
+          Cookies.set("email", $("#email").val());
+          Cookies.set("password", $("#password").val());
         } else {
-          $(".input-box").type = "password";
-          $(".show_hide").classList.replace("fa-eye", "fa-eye-slash");
+          Cookies.remove("email");
+          Cookies.remove("password");
         }
       });
-    </script> -->
+      if (Cookies.get("email")) {
+        $("#email").val(Cookies.get("email"));
+        $("#password").val(Cookies.get("password"));
+        $("#rememberMe").prop("checked", "true");
+      }
+    </script>
   </body>
 </html>

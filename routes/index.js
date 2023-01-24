@@ -27,6 +27,6 @@ router.get("/campaign-list", indexController.campaignList);
 
 router.get("/vote-result", indexController.voteResult);
 
-router.get("/campaign-detail", indexController.campaignDetail);
+router.get("/campaign-detail/:id", indexController.campaignDetail);
 
 module.exports = router;

@@ -24,22 +24,23 @@
       <div>
         <div class="list-group-item">
           <div class="row">
+            <% for(var i = 0; i < king.length; i++) { %>
             <div
               class="col-lg-4 col-md-6 col-sm-12 mb-3"
               style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
             >
               <div class="card">
-                <img src="images/profile.jpg" alt="" />
+                <img src="<%= king[i].image %>" alt="" />
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-9">
-                    <h1>Campaign Name</h1>
+                    <h1><%= king[i].title %></h1>
                     <h3>Create Date</h3>
                     <span>23.4.2023</span>
                   </div>
                   <div class="col-3">
-                    <a href="/campaign-detail">
+                    <a href="/campaign-detail/<%= king[i].id %>">
                       <input
                         type="button"
                         value="View"
@@ -50,217 +51,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- delete start  -->
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- delete end -->
+            <% } %>
           </div>
         </div>
       </div>
@@ -273,22 +64,23 @@
       <div>
         <div class="list-group-item">
           <div class="row">
+            <% for(var k = 0; k < project.length; k++){ %>
             <div
               class="col-lg-4 col-md-6 col-sm-12 mb-3"
               style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
             >
               <div class="card">
-                <img src="images/profile.jpg" alt="" />
+                <img src="<%= project[k].image %>" alt="" />
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-9">
-                    <h1>Campaign Name</h1>
+                    <h1><%= project[k].title %></h1>
                     <h3>Create Date</h3>
                     <span>23.4.2023</span>
                   </div>
                   <div class="col-3">
-                    <a href="/campaign-detail">
+                    <a href="/campaign-detail/<%= project[k].id %>">
                       <input
                         type="button"
                         value="View"
@@ -299,217 +91,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- delete start  -->
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- delete end -->
+            <% } %>
           </div>
         </div>
       </div>
@@ -524,22 +106,23 @@
       <div>
         <div class="list-group-item">
           <div class="row">
+            <% for(var j = 0; j < other.length; j++) { %>
             <div
               class="col-lg-4 col-md-6 col-sm-12 mb-3"
               style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
             >
               <div class="card">
-                <img src="images/profile.jpg" alt="" />
+                <img src="<%= other[j].image %>" alt="" />
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-9">
-                    <h1>Campaign Name</h1>
+                    <h1><%= other[j].title %></h1>
                     <h3>Create Date</h3>
                     <span>23.4.2023</span>
                   </div>
                   <div class="col-3">
-                    <a href="/campaign-detail">
+                    <a href="/campaign-detail/<%= other[j].id %> ">
                       <input
                         type="button"
                         value="View"
@@ -550,217 +133,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- delete start  -->
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="col-lg-4 col-md-6 col-sm-12 mb-3"
-              style="box-shadow: 0px 10px 10px rgb(184, 119, 238)"
-            >
-              <div class="card">
-                <img src="images/profile.jpg" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-9">
-                    <h1>Campaign Name</h1>
-                    <h3>Create Date</h3>
-                    <span>23.4.2023</span>
-                  </div>
-                  <div class="col-3">
-                    <a href="/vote-give">
-                      <input
-                        type="button"
-                        value="View"
-                        class="btn btn-primary"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- delete end -->
+            <% } %>
           </div>
         </div>
       </div>
