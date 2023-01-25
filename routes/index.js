@@ -21,6 +21,10 @@ router.get("/reset-password", indexController.resetPassword);
 
 router.post("/reset-password", indexController.loadResetPassword);
 
+router.get("/change-password/:id", indexController.changePassword);
+
+router.post("/change-password/:id", indexController.loadChangePassword);
+
 router.get("/sign-up", indexController.signUp);
 
 router.post("/sign-up", indexController.loadSignUp);

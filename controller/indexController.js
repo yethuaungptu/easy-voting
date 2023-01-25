@@ -221,11 +221,37 @@ exports.loadResetPassword = (req, res) => {
     User.updateOne(
       { id: req.body.id },
       { $set: { password: resetpass } },
-      (err1, rtn1) => {
+      (err1) => {
         if (err1) throw err1;
       }
     );
     res.redirect("/login");
+  });
+};
+
+exports.changePassword = (req, res) => {
+  res.render("change-password", { id: req.params.id });
+};
+
+exports.loadChangePassword = (req, res) => {
+  let newpass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
+  User.findOne({ id: req.params.id }, (err, rtn) => {
+    if (err) throw err;
+    if (User.compare(req.body.password1, rtn.password)) {
+      User.updateOne(
+        { email: rtn.email },
+        { $set: { password: newpass } },
+        (err1) => {
+          if (err1) throw err1;
+          req.session.destroy((err2) => {
+            if (err2) throw err2;
+            res.redirect("/login");
+          });
+        }
+      );
+    } else {
+      res.redirect("/change-password/" + req.params.id);
+    }
   });
 };
 
