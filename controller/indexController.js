@@ -4,6 +4,7 @@ const User = require("../model/user");
 const Campaign = require("../model/campaign");
 const CampaignData = require("../model/campaignData");
 const SMTPConnection = require("nodemailer/lib/smtp-connection");
+const bcrypt = require("bcryptjs");
 
 exports.index = (req, res) => {
   Campaign.find({ select: "1" }, (err, rtn) => {
@@ -145,8 +146,87 @@ exports.loadSignUp = async (req, res) => {
   }
 };
 
+//forget password
+
+const sendforgetPassword = async (name, email, id) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: process.env.USER_EMAIL,
+        pass: process.env.PASSWORD,
+      },
+      tls: {
+        ciphers: "SSLv3",
+      },
+    });
+    const mailOptions = {
+      from: "Easy Vote<process.env.USER_EMAIL>",
+      to: email,
+      subject: "Forget password",
+      html:
+        "<p>Hi " +
+        name +
+        ',Click reset password to <a href="http://127.0.0.1:3000/reset-password?token=' +
+        id +
+        '">create a new password</a>ကိုနှိပ်ပါ။</p>',
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email has been sent:- ", info.response);
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.forgetPassword = (req, res) => {
   res.render("forget-password");
+};
+
+exports.loadForgetPassword = (req, res) => {
+  User.findOne({ email: req.body.email }, (err, rtn) => {
+    if (rtn == null) {
+      res.render("forget-password", { message: "Your mail not found" });
+    } else {
+      if (rtn != null && rtn.verify == false) {
+        res.render("forget-password", { message: "Use a verified mail" });
+      }
+      sendforgetPassword(rtn.name, rtn.email, rtn.id);
+      res.render("forget-password", { msg: "Check your mail" });
+    }
+  });
+};
+
+exports.resetPassword = (req, res) => {
+  User.findById(req.query.token, (err, rtn) => {
+    if (err) throw err;
+    res.render("reset-password", { id: rtn.id });
+  });
+};
+
+exports.loadResetPassword = (req, res) => {
+  User.findOne({ id: req.body.id }, (err, rtn) => {
+    let resetpass = bcrypt.hashSync(
+      req.body.password,
+      bcrypt.genSaltSync(8),
+      null
+    );
+    User.updateOne(
+      { id: req.body.id },
+      { $set: { password: resetpass } },
+      (err1, rtn1) => {
+        if (err1) throw err1;
+      }
+    );
+    res.redirect("/login");
+  });
 };
 
 exports.verifyLogin = async (req, res) => {

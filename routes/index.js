@@ -15,6 +15,12 @@ router.get("/logout", indexController.userLogout);
 
 router.get("/forget-password", indexController.forgetPassword);
 
+router.post("/forget-password", indexController.loadForgetPassword);
+
+router.get("/reset-password", indexController.resetPassword);
+
+router.post("/reset-password", indexController.loadResetPassword);
+
 router.get("/sign-up", indexController.signUp);
 
 router.post("/sign-up", indexController.loadSignUp);

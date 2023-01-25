@@ -103,6 +103,7 @@
             <div class="mb-3">
               <label class="form-label">Email address</label>
               <input
+                id="userEmail"
                 type="email"
                 name="email"
                 class="form-control"
@@ -135,8 +136,14 @@
             </div>
             <div class="mb-2">
               <label class="form-check">
-                <input type="checkbox" class="form-check-input" />
-                <span class="form-check-label">Remember me on this device</span>
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberMe"
+                />
+                <span class="form-check-label" id="rememberMe"
+                  >Remember me on this device</span
+                >
               </label>
             </div>
             <div class="form-footer">
@@ -156,6 +163,20 @@
     <!-- Tabler Core -->
     <script src="javascripts/js/tabler.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../javascripts/js/show-hide.js"></script>
+    <script src="/javascripts/js/show-hide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+      $("#rememberMe").click(function () {
+        if ($("#rememberMe").prop("checked")) {
+          Cookies.set("userEmail", $("#userEmail").val());
+        } else {
+          Cookies.remove("userEmail");
+        }
+      });
+      if (Cookies.get("userEmail")) {
+        $("#userEmail").val(Cookies.get("userEmail"));
+        $("#rememberMe").prop("checked", "true");
+      }
+    </script>
   </body>
 </html>

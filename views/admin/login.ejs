@@ -30,7 +30,7 @@
               <input
                 type="email"
                 name="email"
-                id="email"
+                id="adminEmail"
                 class="form-control"
                 placeholder="Enter email"
                 required
@@ -90,16 +90,16 @@
     <script>
       $("#rememberMe").click(function () {
         if ($("#rememberMe").prop("checked")) {
-          Cookies.set("email", $("#email").val());
-          Cookies.set("password", $("#password").val());
+          Cookies.set("adminEmail", $("#adminEmail").val());
+          // Cookies.set("adminPassword", $(".adminPassword").val());
         } else {
-          Cookies.remove("email");
-          Cookies.remove("password");
+          Cookies.remove("adminEmail");
+          // Cookies.remove("adminPassword");
         }
       });
-      if (Cookies.get("email")) {
-        $("#email").val(Cookies.get("email"));
-        $("#password").val(Cookies.get("password"));
+      if (Cookies.get("adminEmail")) {
+        $("#adminEmail").val(Cookies.get("adminEmail"));
+        // $("#adminPassword").val(Cookies.get("adminPassword"));
         $("#rememberMe").prop("checked", "true");
       }
     </script>
