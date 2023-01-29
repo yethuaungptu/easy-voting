@@ -5,8 +5,6 @@ const { voteAuth } = require("../middleware/user-auth");
 
 router.get("/", indexController.index);
 
-router.get("/vote-give", voteAuth, indexController.voteGive);
-
 router.get("/login", indexController.login);
 
 router.post("/login", indexController.loadLogin);

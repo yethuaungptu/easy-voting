@@ -2,10 +2,18 @@ require("dotenv").config();
 const Admin = require("../model/admin");
 const Campaign = require("../model/campaign");
 const CampaignData = require("../model/campaignData");
+const User = require("../model/user");
 const fs = require("fs");
+const moment = require("moment");
 
 exports.dashboard = (req, res) => {
-  res.render("admin/dashboard");
+  User.find((err, rtn) => {
+    if (err) throw err;
+    Campaign.find((err1, rtn1) => {
+      if (err1) throw err;
+      res.render("admin/dashboard", { user: rtn, campaign: rtn1 });
+    });
+  });
 };
 
 exports.login = (req, res) => {
@@ -116,6 +124,7 @@ exports.loadCreate = (req, res) => {
   campaign.title = req.body.title;
   campaign.description = req.body.description;
   campaign.select = req.body.select;
+  campaign.create = moment().format("MMMM Do YYYY, h:mm:ss a");
   if (req.file) campaign.image = "/images/upload/cover/" + req.file.filename;
   campaign.save();
 
@@ -176,6 +185,7 @@ exports.loadCampaignData = (req, res) => {
   campaignData.name = req.body.name;
   campaignData.campaignId = req.body.id;
   campaignData.description = req.body.desc;
+  campaignData.uploadDate = moment().format("MMMM Do YYYY, h:mm:ss a");
   if (req.file) campaignData.image = "/images/upload/img/" + req.file.filename;
   campaignData.save();
   Campaign.findById(req.body.id, (err, rtn) => {
@@ -193,4 +203,94 @@ exports.userDelete = (req, res) => {
       res.redirect("/admin/campaign-detail/" + rtn.campaignId);
     });
   });
+};
+
+exports.userAccDelete = (req, res) => {
+  User.findByIdAndDelete(req.params.id, (err) => {
+    if (err) throw err;
+    res.redirect("/admin");
+  });
+};
+
+exports.userEnable = (req, res) => {
+  let update;
+  if (req.body.status == "enable") {
+    update = { disable: true };
+  } else {
+    update = { disable: false };
+  }
+  User.findByIdAndUpdate(req.body.id, { $set: update }, (err, rtn) => {
+    if (err) {
+      res.json({ status: "error" });
+    } else {
+      res.json({ status: true });
+    }
+  });
+};
+
+exports.campaignUpdate = (req, res) => {
+  Campaign.findById(req.params.id, (err, rtn) => {
+    if (err) throw err;
+    res.render("admin/campaign-update", { camp: rtn });
+  });
+};
+
+exports.loadCampaignUpdate = (req, res) => {
+  if (req.file) {
+    Campaign.findById(req.body.id)
+      .select("image")
+      .exec((err, rtn) => {
+        if (err) throw err;
+        fs.unlink("public" + rtn.image, (err1) => {
+          if (err1) throw err1;
+        });
+      });
+  }
+  let update = {
+    title: req.body.title,
+    description: req.body.desc,
+    update: moment().format("MMMM Do YYYY, h:mm:ss a"),
+  };
+  if (req.file) update.image = "/images/upload/cover/" + req.file.filename;
+  Campaign.findByIdAndUpdate(req.body.id, { $set: update }, (err2) => {
+    if (err2) throw err2;
+    res.redirect("/admin/campaign-detail/" + req.body.id);
+  });
+};
+
+exports.campaignDataUpdate = (req, res) => {
+  CampaignData.findById(req.params.id, (err, rtn) => {
+    if (err) throw err;
+    Campaign.findById(rtn.campaignId, (err1, rtn1) => {
+      if (err1) throw err1;
+      res.render("admin/campData-update", { campData: rtn, camp: rtn1 });
+    });
+  });
+};
+
+exports.loadCampaignDataUpdate = (req, res) => {
+  if (req.file) {
+    CampaignData.findById(req.body.dataId)
+      .select("image")
+      .exec((err5, rtn5) => {
+        if (err5) throw err5;
+        fs.unlink("public" + rtn5.image, (err6) => {
+          if (err6) throw err6;
+        });
+      });
+  }
+  let dataUpdate = {
+    name: req.body.name,
+    description: req.body.desc,
+    updateDate: moment().format("MMMM Do YYYY, h:mm:ss a"),
+  };
+  if (req.file) dataUpdate.image = "/images/upload/img/" + req.file.filename;
+  CampaignData.findByIdAndUpdate(
+    req.body.dataId,
+    { $set: dataUpdate },
+    (err7) => {
+      if (err7) throw err7;
+      res.redirect("/admin/campaign-detail/" + req.body.campId);
+    }
+  );
 };

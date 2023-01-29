@@ -5,22 +5,25 @@ const Campaign = require("../model/campaign");
 const CampaignData = require("../model/campaignData");
 const SMTPConnection = require("nodemailer/lib/smtp-connection");
 const bcrypt = require("bcryptjs");
+const moment = require("moment");
 
 exports.index = (req, res) => {
-  Campaign.find({ select: "1" }, (err, rtn) => {
-    if (err) throw err;
-    Campaign.find({ select: "2" }, (err1, rtn1) => {
-      if (err1) throw err1;
-      Campaign.find({ select: "3" }, (err2, rtn2) => {
-        if (err2) throw err2;
-        res.render("index", { king: rtn, project: rtn1, other: rtn2 });
-      });
+  Campaign.find({ select: "1" })
+    .sort({ create: -1 })
+    .exec((err, rtn) => {
+      if (err) throw err;
+      Campaign.find({ select: "2" })
+        .sort({ create: -1 })
+        .exec((err1, rtn1) => {
+          if (err1) throw err1;
+          Campaign.find({ select: "3" })
+            .sort({ create: -1 })
+            .exec((err2, rtn2) => {
+              if (err2) throw err2;
+              res.render("index", { king: rtn, project: rtn1, other: rtn2 });
+            });
+        });
     });
-  });
-};
-
-exports.voteGive = (req, res) => {
-  res.render("vote-give");
 };
 
 exports.login = async (req, res) => {
@@ -29,28 +32,35 @@ exports.login = async (req, res) => {
 
 exports.loadLogin = (req, res) => {
   User.findOne({ email: req.body.email }, (err, rtn) => {
+    if (err) throw err;
     if (rtn == null) {
       res.render("login", { message: "Create your account" });
     } else {
-      if (rtn.verify != true) {
+      if (rtn.disable == false) {
         res.render("login", {
-          verifyEmail: "Your email is not yet verified, so please confirm",
+          message: "Your account has been disabled by admin",
         });
       } else {
-        if (
-          rtn != null &&
-          User.compare(req.body.password, rtn.password) &&
-          rtn.verify == true
-        ) {
-          req.session.user = {
-            id: rtn._id,
-            name: rtn.name,
-            email: rtn.email,
-            password: rtn.password,
-          };
-          res.redirect("/");
+        if (rtn.verify != true) {
+          res.render("login", {
+            verifyEmail: "Your email is not yet verified, so please confirm",
+          });
         } else {
-          res.render("login", { message: "something wrong!" });
+          if (
+            rtn != null &&
+            User.compare(req.body.password, rtn.password) &&
+            rtn.verify == true
+          ) {
+            req.session.user = {
+              id: rtn._id,
+              name: rtn.name,
+              email: rtn.email,
+              password: rtn.password,
+            };
+            res.redirect("/");
+          } else {
+            res.render("login", { message: "something wrong!" });
+          }
         }
       }
     }
@@ -109,6 +119,8 @@ exports.loadSignUp = async (req, res) => {
       email,
       password,
       verify: false,
+      disable: true,
+      date: moment().format("MMMM Do YYYY, h:mm:ss a"),
     });
     var newUser = user.save();
     if (newUser) {
@@ -230,7 +242,9 @@ exports.loadResetPassword = (req, res) => {
 };
 
 exports.changePassword = (req, res) => {
-  res.render("change-password", { id: req.params.id });
+  res.render("change-password", {
+    id: req.params.id,
+  });
 };
 
 exports.loadChangePassword = (req, res) => {

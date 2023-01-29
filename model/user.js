@@ -16,10 +16,21 @@ const User = new Schema({
     required: true,
   },
   date: {
-    type: Date,
-    default: Date.now(),
+    type: String,
   },
   verify: {
+    type: Boolean,
+    default: false,
+  },
+  vote: [
+    {
+      campaign: {
+        type: Schema.Types.ObjectId,
+        ref: "campaigns",
+      },
+    },
+  ],
+  disable: {
     type: Boolean,
     default: false,
   },

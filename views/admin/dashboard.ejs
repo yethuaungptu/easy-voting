@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <!-- CSS files -->
-    <link href="../stylesheets/css/tabler.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/demo.min.css" rel="stylesheet" />
-    <link href="../stylesheets/css/customize.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/customize.css" rel="stylesheet" />
   </head>
   <body>
     <!-- admin nav start  -->
@@ -197,7 +197,7 @@
             <div class="card">
               <div class="card-body p-2 text-center">
     
-                <div class="h1 m-0">43</div>
+                <div class="h1 m-0"><%= user.length %></div>
                 <div class="text-muted mb-3">Total Users</div>
               </div>
             </div>
@@ -206,7 +206,7 @@
             <div class="card">
               <div class="card-body p-2 text-center">
     
-                <div class="h1 m-0">87</div>
+                <div class="h1 m-0"> 66</div>
                 <div class="text-muted mb-3">Total Vote</div>
               </div>
             </div>
@@ -215,7 +215,7 @@
             <div class="card">
               <div class="card-body p-2 text-center">
     
-                <div class="h1 m-0">2</div>
+                <div class="h1 m-0"><%= campaign.length %></div>
                 <div class="text-muted mb-3">Total Campaign</div>
               </div>
             </div>
@@ -234,6 +234,7 @@
             style="max-height: 35rem"
             >
             <div class="list-group-item" style="height: 400px">
+              <% for(var i = 0; i < user.length; i++){ %>
                 <div class="row">
                     <div class="col-auto mb-2">
                         <a href="#">
@@ -245,118 +246,28 @@
                     </div>
                     <div class="col-2 text-truncate">
                         <h3>Name</h3>
-                        <h5 class="text-muted text-truncate mt-n1">John</h5>
+                        <h5 class="text-muted text-truncate mt-n1"><%= user[i].name %></h5>
                     </div>
-                    <div class="col-2 text-truncate">
+                    <div class="col-3 text-truncate">
                         <h3>Create Date</h3>
-                        <h5 class="text-muted text-truncate">12.3.1023</h5>
+                        <h5 class="text-muted text-truncate"><%= user[i].date %></h5>
                     </div>
                     <div class="col-3">
                       <h3>Email</h3>
-                      <h5 class="text-muted text-truncate">mg@gmail.com</h5>
+                      <h5 class="text-muted text-truncate"><%= user[i].email %></h5>
                     </div>
-                    <div class="col-2"><input type="submit" value="Disabled" class="btn btn-muted"></div>
-                    <div class="col-2"><input type="submit" value="Delete" class="btn btn-danger"></div>
+                    <div class="col-2">
+                      <% if(user[i].disable == false){ %>
+                        <button type="button" class="btn btn-success" onclick="changestatus('enable','<%= user[i].id %>')"> Enable </button>
+                        <%}else{%>
+                        <button type="button" class="btn btn-muted"  onclick="changestatus('disable','<%= user[i].id %>')"> Disable </button>
+                        <% } %>
+                    </div>
+                    <div class="col-1">
+                      <a href="/admin/user-acc-delete/<%= user[i].id %>" class="btn btn-danger">Delete</a>
+                    </div>
                 </div>
-    
-                <!-- delete start  -->
-                <div class="row">
-                  <div class="col-auto mb-2">
-                      <a href="#">
-                      <span
-                          class="avatar"
-                          style="background-image: url(images/svg/profile.svg)"
-                      ></span>
-                      </a>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Name</h3>
-                      <h5 class="text-muted text-truncate mt-n1">John</h5>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Create Date</h3>
-                      <h5 class="text-muted text-truncate">12.3.1023</h5>
-                  </div>
-                  <div class="col-3">
-                    <h3>Email</h3>
-                    <h5 class="text-muted text-truncate">mg@gmail.com</h5>
-                  </div>
-                  <div class="col-2"><input type="submit" value="Disabled" class="btn btn-muted"></div>
-                  <div class="col-2"><input type="submit" value="Delete" class="btn btn-danger"></div>
-                </div>
-                <div class="row">
-                  <div class="col-auto mb-2">
-                      <a href="#">
-                      <span
-                          class="avatar"
-                          style="background-image: url(images/svg/profile.svg)"
-                      ></span>
-                      </a>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Name</h3>
-                      <h5 class="text-muted text-truncate mt-n1">John</h5>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Create Date</h3>
-                      <h5 class="text-muted text-truncate">12.3.1023</h5>
-                  </div>
-                  <div class="col-3">
-                    <h3>Email</h3>
-                    <h5 class="text-muted text-truncate">mg@gmail.com</h5>
-                  </div>
-                  <div class="col-2"><input type="submit" value="Disabled" class="btn btn-muted"></div>
-                  <div class="col-2"><input type="submit" value="Delete" class="btn btn-danger"></div>
-                </div>
-                <div class="row">
-                  <div class="col-auto mb-2">
-                      <a href="#">
-                      <span
-                          class="avatar"
-                          style="background-image: url(images/svg/profile.svg)"
-                      ></span>
-                      </a>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Name</h3>
-                      <h5 class="text-muted text-truncate mt-n1">John</h5>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Create Date</h3>
-                      <h5 class="text-muted text-truncate">12.3.1023</h5>
-                  </div>
-                  <div class="col-3">
-                    <h3>Email</h3>
-                    <h5 class="text-muted text-truncate">mg@gmail.com</h5>
-                  </div>
-                  <div class="col-2"><input type="submit" value="Disabled" class="btn btn-muted"></div>
-                  <div class="col-2"><input type="submit" value="Delete" class="btn btn-danger"></div>
-                </div>
-                <div class="row">
-                  <div class="col-auto mb-2">
-                      <a href="#">
-                      <span
-                          class="avatar"
-                          style="background-image: url(images/svg/profile.svg)"
-                      ></span>
-                      </a>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Name</h3>
-                      <h5 class="text-muted text-truncate mt-n1">John</h5>
-                  </div>
-                  <div class="col-2 text-truncate">
-                      <h3>Create Date</h3>
-                      <h5 class="text-muted text-truncate">12.3.1023</h5>
-                  </div>
-                  <div class="col-3">
-                    <h3>Email</h3>
-                    <h5 class="text-muted text-truncate">mg@gmail.com</h5>
-                  </div>
-                  <div class="col-2"><input type="submit" value="Disabled" class="btn btn-muted"></div>
-                  <div class="col-2"><input type="submit" value="Delete" class="btn btn-danger"></div>
-                </div>
-                <!-- delete end -->
+                <% } %>
             </div>
             </div>
           </div>
@@ -432,8 +343,24 @@
     </div>
     <!-- body end  -->
 
-    <script src="../javascripts/js/demo.min.js"></script>
-    <script src="../javascripts/js/tabler.min.js"></script>
-    <script src="../javascripts/js/customize.js"></script>
+    <script src="/javascripts/js/demo.min.js"></script>
+    <script src="/javascripts/js/tabler.min.js"></script>
+    <script src="/javascripts/js/customize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      function changestatus(status, id){
+        $.ajax("/admin/change-status",{
+          type : 'POST',
+          data : {status: status, id : id},
+          success: function(result){
+            if(result.status == 'error'){
+              alert("Somethings Was Wrong!")
+            }else{
+              location.reload();
+            }
+          }
+        })
+      }
+    </script>
   </body>
 </html>

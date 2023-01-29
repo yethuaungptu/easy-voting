@@ -16,6 +16,12 @@ const Campaign = new Schema({
   image: {
     type: String,
   },
+  create: {
+    type: String,
+  },
+  update: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("campaign", Campaign);

@@ -18,8 +18,10 @@ const CampaignData = new Schema({
     type: String,
   },
   uploadDate: {
-    type: Date,
-    default: Date.now(),
+    type: String,
+  },
+  updateDate: {
+    type: String,
   },
   count: {
     type: Number,
