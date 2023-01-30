@@ -22,14 +22,6 @@ const User = new Schema({
     type: Boolean,
     default: false,
   },
-  vote: [
-    {
-      campaign: {
-        type: Schema.Types.ObjectId,
-        ref: "campaigns",
-      },
-    },
-  ],
   disable: {
     type: Boolean,
     default: false,

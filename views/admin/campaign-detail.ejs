@@ -197,6 +197,7 @@
           <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top: 10px;">
             <h3>Title : <%= data.title %></h3>
             <h3>Create Date : <%= data.create %></h3>
+            <h3>End Date : <%= data.endDate %></h3>
             <% if(typeof data.update !== 'undefined'){ %>
               <h3>Update : <%= data.update %></h3>
             <% } %>
@@ -217,6 +218,7 @@
               </div>
               <div class="col-6">
                 <h4>Name : <%= user[i].name %></h4>
+                <h4>Total Vote : <%= user[i].count %></h4>
                 <% if(typeof user[i].updateDate !== 'undefined') { %>
                   <h4>Update : <%= user[i].updateDate %></h4>
                 <% } %>

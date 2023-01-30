@@ -158,11 +158,6 @@
                     <span class="nav-link-title">Create</span>
                   </a>
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="/admin/campaign-detail">
-                    <span class="nav-link-title"> Campaign Detail </span>
-                  </a>
-                </li> -->
                 
               </ul>
             </div>
@@ -202,24 +197,30 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-8">
             <div class="card">
               <div class="card-body p-2 text-center">
-    
-                <div class="h1 m-0"> 66</div>
-                <div class="text-muted mb-3">Total Vote</div>
+                <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                      <div class="h1 m-0"><%= king.length %></div>
+                      <div class="text-muted"> Total King & Queen </div>
+                      <div class="text-muted">Campaigns</div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                      <div class="h1 m-0"><%= project.length %></div>
+                      <div class="text-muted">Total Project Competition</div>
+                      <div class="text-muted">Campaigns</div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                      <div class="h1 m-0"><%= other.length %></div>
+                      <div class="text-muted">Total Other</div>
+                      <div class="text-muted">Campaigns</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body p-2 text-center">
-    
-                <div class="h1 m-0"><%= campaign.length %></div>
-                <div class="text-muted mb-3">Total Campaign</div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
       <!-- total user end -->

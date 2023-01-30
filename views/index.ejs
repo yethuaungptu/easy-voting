@@ -58,7 +58,12 @@
             </div> 
             <div >
               <p class=" font1">A Voting Platform for Any University Vote Online.Click start for voting and your account is ready to use.</p>
+              <% if(locals.user) { %> 
+                <h1 class="font">Welcome!</h1>
+                <h2 class="tit"><%= locals.user.name %></h2>
+              <% }else { %> 
               <a href="/sign-up" class="btn btn-outline-secondary font1" style="margin: 10px 0px 0px 50px; width:200px; height: 50px;">Start For Voting</a>
+              <% } %>
             </div>
           </div>
         </div>

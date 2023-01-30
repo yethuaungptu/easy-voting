@@ -11,33 +11,43 @@
     <link href="/stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fugaz One">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gentium Book Basic">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fugaz One"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Gentium Book Basic"
+    />
     <style>
-      .tit{
-            font-family: 'Fugaz One', serif;
-          }
-      .dtit{
-          font-family: 'Gentium Book Basic', serif;
-          }
+      .tit {
+        font-family: "Fugaz One", serif;
+      }
+      .dtit {
+        font-family: "Gentium Book Basic", serif;
+      }
     </style>
   </head>
   <body>
+    <!-- nav start  -->
     <% include ./partials/nav %>
+    <!-- nav end -->
+
     <div class="container">
-      <h1 class="tit" style="margin-top: 10px">Canpanign Detail</h1>
+      <h1 class="tit" style="margin-top: 10px">Campanign Detail</h1>
       <hr />
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 card" style="padding: 5px">
-          <img src="<%= kingCampaign.image %>" alt="" />
+          <img src="<%= campaign.image %>" alt="" />
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12" style="margin-top: 10px;">
-          <h3 class="dtit">Campaign Title : <%= kingCampaign.title %></h3>
-          <h3 class="dtit">Create Date : <%= kingCampaign.create %></h3>
-          <h3 class="dtit">Exp Date : 12.5.2022</h3>
+          <h3 class="dtit">Campaign Title : <%= campaign.title %></h3>
+          <h3 class="dtit">Create Date : <%= campaign.create %></h3>
+          <h3 class="dtit">End Date : <%= campaign.endDate %></h3>
+    
           <h3 class="dtit">Description</h2>
           <p>
-            <%= kingCampaign.description %>
+            <%= campaign.description %>
           </p>
         </div>
       </div>
@@ -67,18 +77,26 @@
                   <%= campaignData[i].description %>
                 </p>
               </div>
-              <div class="row" style="margin-bottom: 10px;">
-                <div class="col-6">
-                  <a href="#" class="btn btn-outline">Cancel</a>
-                </div>
-                <div class="col-6" style="text-align: end">
-                  <a href="#" class="btn btn-outline-success">Vote</a>
-                </div>
+              <% if(locals.user) { %> 
+              <div style="margin-bottom: 10px;">
+                    <div  style="text-align: end">
+                      <button class="btn btn-success vote" data-id="<%= campaign.id %>" data-type ="vote" data-camp="<%= campaignData[i].id %>"> vote</button>
+                    </div>
               </div>
+              <% }else { %> 
+                <h2 class="dtit text-warning card" style="text-align: center;">Login to vote</h2>
+              <% } %>
             </div>
-          <% } %>
+            <% } %>
         </div>
       </div>
+      <% if(locals.user) { %>
+      <div style="text-align: end;">
+        <div style="border: 1px solid rgba(36, 35, 35, 0.664); margin-bottom: 5px;"></div>
+        <button class="btn btn-primary">done</button>
+      </div>
+      <% } %>
+      
     </div>
 
     <!-- footer start  -->
@@ -87,5 +105,38 @@
 
     <script src="/javascripts/js/demo.min.js"></script>
     <script src="/javascripts/js/tabler.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(".vote").click(function() {
+        $(".vote").not(this).attr("disabled", true)
+        $(this).html("unvote")
+        refreshVote()
+        showAbout($(this).data("id"),$(this).data("camp"), $(this).data("type"));
+        if($(this).data("type") == "vote") $(this).data("type", "unvote");
+        else $(this).data("type", "vote");
+      })
+        
+      function refreshVote() {
+        $('.vote').click(function(){
+          $(this).html("vote");
+          $(".vote").attr("disabled", false)
+          location.reload()
+        })
+      }
+
+      function showAbout(id,camp,type){
+        let data = {id,camp,type }
+        $.ajax({
+          url:"/give-vote",
+          data:data,
+          type:"POST"
+        }).done(function(result){
+          if(result.status == "error"){
+            alert("somethings was wrong!")
+          }
+        })
+        console.log(id, type, camp);
+        }
+    </script>
   </body>
 </html>

@@ -16,10 +16,21 @@ const Campaign = new Schema({
   image: {
     type: String,
   },
+  vote: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+      },
+    },
+  ],
   create: {
     type: String,
   },
   update: {
+    type: String,
+  },
+  endDate: {
     type: String,
   },
 });

@@ -7,11 +7,23 @@ const fs = require("fs");
 const moment = require("moment");
 
 exports.dashboard = (req, res) => {
+  console.log(moment().format("D MMMM YYYY, h:mm:ss A"));
   User.find((err, rtn) => {
     if (err) throw err;
-    Campaign.find((err1, rtn1) => {
-      if (err1) throw err;
-      res.render("admin/dashboard", { user: rtn, campaign: rtn1 });
+    Campaign.find({ select: "1" }, (err1, rtn1) => {
+      if (err1) throw err1;
+      Campaign.find({ select: "2" }, (err2, rtn2) => {
+        if (err2) throw err2;
+        Campaign.find({ select: "3" }, (err3, rtn3) => {
+          if (err3) throw err3;
+          res.render("admin/dashboard", {
+            king: rtn1,
+            project: rtn2,
+            other: rtn3,
+            user: rtn,
+          });
+        });
+      });
     });
   });
 };
@@ -124,7 +136,8 @@ exports.loadCreate = (req, res) => {
   campaign.title = req.body.title;
   campaign.description = req.body.description;
   campaign.select = req.body.select;
-  campaign.create = moment().format("MMMM Do YYYY, h:mm:ss a");
+  campaign.create = moment().format("D MMMM YYYY, h:mm:ss A");
+  campaign.endDate = req.body.endDate;
   if (req.file) campaign.image = "/images/upload/cover/" + req.file.filename;
   campaign.save();
 
@@ -185,7 +198,7 @@ exports.loadCampaignData = (req, res) => {
   campaignData.name = req.body.name;
   campaignData.campaignId = req.body.id;
   campaignData.description = req.body.desc;
-  campaignData.uploadDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+  campaignData.uploadDate = moment().format("D MMMM YYYY, h:mm:ss A");
   if (req.file) campaignData.image = "/images/upload/img/" + req.file.filename;
   campaignData.save();
   Campaign.findById(req.body.id, (err, rtn) => {
@@ -249,7 +262,7 @@ exports.loadCampaignUpdate = (req, res) => {
   let update = {
     title: req.body.title,
     description: req.body.desc,
-    update: moment().format("MMMM Do YYYY, h:mm:ss a"),
+    update: moment().format("D MMMM YYYY, h:mm:ss A"),
   };
   if (req.file) update.image = "/images/upload/cover/" + req.file.filename;
   Campaign.findByIdAndUpdate(req.body.id, { $set: update }, (err2) => {
@@ -282,7 +295,7 @@ exports.loadCampaignDataUpdate = (req, res) => {
   let dataUpdate = {
     name: req.body.name,
     description: req.body.desc,
-    updateDate: moment().format("MMMM Do YYYY, h:mm:ss a"),
+    updateDate: moment().format("D MMMM YYYY, h:mm:ss A"),
   };
   if (req.file) dataUpdate.image = "/images/upload/img/" + req.file.filename;
   CampaignData.findByIdAndUpdate(

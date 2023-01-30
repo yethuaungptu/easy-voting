@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Other</title>
+    <title>Create</title>
     <!-- CSS files -->
     <link href="/stylesheets/css/tabler.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
@@ -12,6 +12,8 @@
     <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
     <link href="/stylesheets/css/customize.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
   </head>
   <body>
@@ -178,7 +180,8 @@
             <form action="/admin/create" method="post" enctype="multipart/form-data">
                 <h2 class="care-title" style="margin: 20px;">Create New Campaign</h2>
                 <div class="card" style="padding: 20px;">
-                    <div class="mb-3">
+                    <div class="row">
+                      <div class="mb-3 col-6">
                         <label class="form-label required" style="margin-left: 10px;">Name</label>
                         <input
                           type="text"
@@ -188,6 +191,18 @@
                           required
                         />
                       </div>
+                      <div class="mb-3 col-6">
+                        <label class="form-label required" style="margin-left: 10px;">
+                          End Date</label>
+                        <input
+                          type="datetime-local"
+                          class="form-control"
+                          name="endDate"
+                          placeholder="Select End Date"
+                          required
+                        />
+                      </div>
+                    </div>
                       <div class="row">
                         <div class="mb-3 col-6">
                           <div class="form-label required" style="margin-left: 10px;">Select</div>
@@ -307,6 +322,15 @@
     <script src="/javascripts/js/demo.min.js"></script>
     <script src="/javascripts/js/tabler.min.js"></script>
     <script src="/javascripts/js/customize.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      config = {
+
+        enableTime: true,
+        dateFormat: "d F Y h:i:s K",
+      }
+      flatpickr("input[type=datetime-local]",config);
+    </script>
     
 
   </body>
