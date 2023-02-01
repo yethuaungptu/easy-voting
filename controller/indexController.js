@@ -6,7 +6,7 @@ const CampaignData = require("../model/campaignData");
 const SMTPConnection = require("nodemailer/lib/smtp-connection");
 const bcrypt = require("bcryptjs");
 const moment = require("moment");
-const cron = require("node-cron");
+const CronJob = require("cron").CronJob;
 const { insertMany } = require("../model/user");
 
 exports.index = (req, res) => {
@@ -57,6 +57,7 @@ exports.loadLogin = (req, res) => {
               id: rtn._id,
               name: rtn.name,
               email: rtn.email,
+              votegive: rtn.votegive,
               password: rtn.password,
             };
             res.redirect("/");
@@ -289,6 +290,7 @@ exports.loadVerifyLogin = (req, res) => {
         id: rtn._id,
         name: rtn.name,
         email: rtn.email,
+        votegive: rtn.votegive,
         password: rtn.password,
       };
       res.redirect("/");
@@ -319,16 +321,17 @@ exports.campaignList = (req, res) => {
 };
 
 exports.voteResult = (req, res) => {
-  res.render("vote-result");
-
-  // cron.schedule("2 * * * *", () => {
-  //   console.log("hello my time");
-  // });
+  Campaign.find({ select: "1" }, (err, rtn) => {
+    if (err) throw err;
+    Campaign.find({ select: "2" }, (err2, rtn2) => {
+      if (err2) throw err2;
+      Campaign.find({ select: "3" }, (err3, rtn3) => {
+        if (err3) throw err3;
+        res.render("vote-result", { king: rtn, project: rtn2, other: rtn3 });
+      });
+    });
+  });
 };
-
-// exports.loadVoteResult = (req, res) => {
-//   cron.schedule("* * * * *", () => {});
-// };
 
 exports.campaignDetail = (req, res) => {
   Campaign.findById(req.params.id, (err, rtn) => {
@@ -341,10 +344,6 @@ exports.campaignDetail = (req, res) => {
 };
 
 exports.voteGive = (req, res) => {
-  console.log("show me id:", req.body.id);
-  console.log("show me s:", req.body.type);
-  console.log("show me id:", req.body.camp);
-
   if (req.body.type === "vote") {
     CampaignData.findById(req.body.camp, (err1, rtn1) => {
       let voteLength = rtn1.count + 1;
@@ -409,4 +408,23 @@ exports.voteGive = (req, res) => {
       }
     });
   }
+};
+
+exports.finalCamp = (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    { $set: { votegive: true } },
+    (err, rtn) => {
+      if (err) throw err;
+      // Campaign.findOne({ vote: req.params.id }, (err1, rtn1) => {
+      //   if (err1) throw err1;
+      //   console.log("shwo me", rtn1);
+      // });
+      res.redirect("/campaign-list");
+    }
+  );
+};
+
+exports.resultDetail = (req, res) => {
+  res.render("result-detail");
 };

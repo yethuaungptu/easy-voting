@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voting Result</title>
+    <!-- CSS files -->
+    <link href="/stylesheets/css/tabler.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- nav start  -->
+    <% include ./partials/nav %>
+    <!-- nav end -->
+
+    <!-- vote result start -->
+    <div id="vote-result" class="card container-xl">
+      <div class="card-header">
+        <h3 class="card-title">Vote Result</h3>
+      </div>
+      <div
+        style="
+          background-image: url('/images/winner-bg.jpg');
+          background-size: cover;
+        "
+      >
+        <div class="row">
+          <div class="col-lg-2 col-md-2"></div>
+          <div
+            class="col-lg-8 col-md-8 col-sm-12"
+            style="padding: 90px 10px 90px 10px"
+          >
+            <div
+              class="card"
+              style="
+                box-shadow: 0px 3px 20px 10px rgba(221, 223, 102, 0.74);
+                border-radius: 10px;
+                background-color: rgba(244, 247, 188, 0.89);
+              "
+            >
+              <div class="card-title" style="text-align: center">
+                <h1 class="pt-2">Winner</h1>
+                <span>Mg Mg</span>
+              </div>
+              <img
+                src="/images/profile.jpg"
+                alt=""
+                style="
+                  border-bottom-right-radius: 10px;
+                  border-bottom-left-radius: 10px;
+                "
+              />
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2"></div>
+        </div>
+      </div>
+
+      <table class="table card-table table-vcenter">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th colspan="2">Voter quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mg Mg</td>
+            <td>3,550</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-primary" style="width: 71%"></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Aung Aung</td>
+            <td>1,798</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div
+                  class="progress-bar bg-primary"
+                  style="width: 35.96%"
+                ></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Hla Hla</td>
+            <td>1,245</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-primary" style="width: 24.9%"></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Ko Ko</td>
+            <td>986</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div
+                  class="progress-bar bg-primary"
+                  style="width: 19.72%"
+                ></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Zaw Zaw</td>
+            <td>854</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div
+                  class="progress-bar bg-primary"
+                  style="width: 17.08%"
+                ></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Min Min</td>
+            <td>650</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-primary" style="width: 13%"></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Tun Tun</td>
+            <td>420</td>
+            <td class="w-50">
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-primary" style="width: 8.4%"></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- vote result end -->
+
+    <!-- footer start  -->
+    <% include ./partials/footer %>
+    <!-- footer end -->
+
+    <script src="/javascripts/js/demo.min.js"></script>
+    <script src="/javascripts/js/tabler.min.js"></script>
+  </body>
+</html>

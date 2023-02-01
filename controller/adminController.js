@@ -7,20 +7,27 @@ const fs = require("fs");
 const moment = require("moment");
 
 exports.dashboard = (req, res) => {
-  console.log(moment().format("D MMMM YYYY, h:mm:ss A"));
   User.find((err, rtn) => {
     if (err) throw err;
-    Campaign.find({ select: "1" }, (err1, rtn1) => {
-      if (err1) throw err1;
-      Campaign.find({ select: "2" }, (err2, rtn2) => {
-        if (err2) throw err2;
-        Campaign.find({ select: "3" }, (err3, rtn3) => {
-          if (err3) throw err3;
-          res.render("admin/dashboard", {
-            king: rtn1,
-            project: rtn2,
-            other: rtn3,
-            user: rtn,
+    User.find({ verify: true }, (err5, rtn5) => {
+      if (err5) throw err5;
+      User.find({ verify: false }, (err4, rtn4) => {
+        if (err4) throw err4;
+        Campaign.find({ select: "1" }, (err1, rtn1) => {
+          if (err1) throw err1;
+          Campaign.find({ select: "2" }, (err2, rtn2) => {
+            if (err2) throw err2;
+            Campaign.find({ select: "3" }, (err3, rtn3) => {
+              if (err3) throw err3;
+              res.render("admin/dashboard", {
+                king: rtn1,
+                project: rtn2,
+                other: rtn3,
+                user: rtn,
+                Fuser: rtn4,
+                Tuser: rtn5,
+              });
+            });
           });
         });
       });
@@ -307,3 +314,5 @@ exports.loadCampaignDataUpdate = (req, res) => {
     }
   );
 };
+
+

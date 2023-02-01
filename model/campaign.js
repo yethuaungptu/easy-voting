@@ -27,6 +27,10 @@ const Campaign = new Schema({
   create: {
     type: String,
   },
+  status: {
+    type: String,
+    default: "start",
+  },
   update: {
     type: String,
   },

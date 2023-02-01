@@ -22,6 +22,10 @@ const User = new Schema({
     type: Boolean,
     default: false,
   },
+  votegive: {
+    type: Boolean,
+    default: false,
+  },
   disable: {
     type: Boolean,
     default: false,
