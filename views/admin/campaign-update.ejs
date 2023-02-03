@@ -18,6 +18,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
   </head>
   <body>
     <!-- admin nav start  -->
@@ -188,7 +193,7 @@
           enctype="multipart/form-data"
         >
           <div class="row">
-            <div class="mb-3 col-lg-4 col-md-4 col-sm-12">
+            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
               <input type="text" value="<%= camp.id %>" name="id" hidden />
               <label class="form-label">Update Name</label>
               <input
@@ -200,7 +205,29 @@
                 value="<%= camp.title %>"
               />
             </div>
-            <div class="mb-3 col-lg-4 col-md-4 col-sm-12">
+            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+              <div class="form-label">Update Image</div>
+              <input
+                type="file"
+                name="image"
+                class="form-control"
+                accept="image/*"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label class="form-label" style="margin-left: 10px">
+                Update End Date</label
+              >
+              <input
+                type="datetime-local"
+                class="form-control"
+                name="endDate"
+                placeholder="<%= camp.endDate %>"
+              />
+            </div>
+            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
               <label class="form-label">Campaign Type</label>
               <% if(camp.select == '1'){ %>
               <input
@@ -219,15 +246,6 @@
               <% }else{ %>
               <input type="text" class="form-control" readonly value="Other" />
               <% } %> <% } %>
-            </div>
-            <div class="mb-3 col-lg-4 col-md-4 col-sm-12">
-              <div class="form-label">Update Image</div>
-              <input
-                type="file"
-                name="image"
-                class="form-control"
-                accept="image/*"
-              />
             </div>
           </div>
           <div class="mb-3">
@@ -255,5 +273,14 @@
         </form>
       </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      config = {
+        enableTime: true,
+        dateFormat: "d F Y h:i:s K",
+      };
+      flatpickr("input[type=datetime-local]", config);
+    </script>
   </body>
 </html>

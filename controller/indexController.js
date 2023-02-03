@@ -411,18 +411,7 @@ exports.voteGive = (req, res) => {
 };
 
 exports.finalCamp = (req, res) => {
-  User.findByIdAndUpdate(
-    req.params.id,
-    { $set: { votegive: true } },
-    (err, rtn) => {
-      if (err) throw err;
-      // Campaign.findOne({ vote: req.params.id }, (err1, rtn1) => {
-      //   if (err1) throw err1;
-      //   console.log("shwo me", rtn1);
-      // });
-      res.redirect("/campaign-list");
-    }
-  );
+  res.redirect("/campaign-detail/" + req.query.campId);
 };
 
 exports.resultDetail = (req, res) => {

@@ -285,7 +285,7 @@
                             </div>
                             <div class="col-4"></div>
                             <div class="col-4">
-                                <a href="/admin/user-acc-delete/<%= user[i].id %>" class="btn btn-danger">Delete</a>
+                                <input class="btn btn-danger userDeleted" data-id="<%= user[i].id %>" value="Delete" style="width: 80px;" readonly>
                             </div>
                           </div>
                         </div>
@@ -372,6 +372,7 @@
     <script src="/javascripts/js/tabler.min.js"></script>
     <script src="/javascripts/js/customize.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       function changestatus(status, id){
         $.ajax("/admin/change-status",{
@@ -386,6 +387,35 @@
           }
         })
       }
+    </script>
+    <script>
+      $(".userDeleted").click(function(){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              let id = $(this).data("id")
+              $.ajax({
+                url:"/admin/user-acc-delete",
+                data:{id},
+                type: 'POST'
+              }).done(function(result){
+                  if(result.status == "error"){
+                  alert("somethings was wrong!")
+                  }else{
+                    location.reload();
+                  }
+                })
+            }
+          })
+      })
+      
     </script>
   </body>
 </html>

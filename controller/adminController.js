@@ -163,33 +163,47 @@ exports.loadCreate = (req, res) => {
 };
 
 exports.campaignDelete = (req, res) => {
-  CampaignData.find({ campaignId: req.params.id }, (err1, rtn1) => {
-    if (err1) throw err1;
-    for (var i = 0; i < rtn1.length; i++) {
-      fs.unlink("public" + rtn1[i].image, (err2) => {
-        if (err2) throw err2;
+  CampaignData.find({ campaignId: req.body.id }, (err1, rtn1) => {
+    if (err1) {
+      res.json({
+        status: "error",
       });
     }
-    CampaignData.deleteMany({ campaignId: req.params.id }, (err3) => {
-      if (err3) throw err3;
-    });
-  });
-  Campaign.findByIdAndDelete(req.params.id, (err, rtn) => {
-    if (err) throw err;
-    fs.unlink("public" + rtn.image, (err) => {
-      if (err) throw err;
-      if (rtn.select == "1") {
-        res.redirect("/admin/king-queen");
-      } else {
-        if (rtn.select == "2") {
-          res.redirect("/admin/project");
-        } else {
-          if (rtn.select == "3") {
-            res.redirect("/admin/other");
-          }
+    for (var i = 0; i < rtn1.length; i++) {
+      fs.unlink("public" + rtn1[i].image, (err2) => {
+        if (err2) {
+          res.json({
+            status: "error",
+          });
         }
+      });
+    }
+    CampaignData.deleteMany({ campaignId: req.body.id }, (err3) => {
+      if (err3) {
+        res.json({
+          status: "error",
+        });
       }
     });
+  });
+  Campaign.findByIdAndDelete(req.body.id, (err, rtn) => {
+    if (err) {
+      res.json({
+        status: "error",
+      });
+    } else {
+      fs.unlink("public" + rtn.image, (err) => {
+        if (err) {
+          res.json({
+            status: "error",
+          });
+        } else {
+          res.json({
+            status: true,
+          });
+        }
+      });
+    }
   });
 };
 
@@ -216,19 +230,38 @@ exports.loadCampaignData = (req, res) => {
 };
 
 exports.userDelete = (req, res) => {
-  CampaignData.findByIdAndDelete(req.params.id, (err, rtn) => {
-    if (err) throw err;
-    fs.unlink("public" + rtn.image, (err2) => {
-      if (err2) throw err2;
-      res.redirect("/admin/campaign-detail/" + rtn.campaignId);
-    });
+  CampaignData.findByIdAndDelete(req.body.id, (err, rtn) => {
+    if (err) {
+      res.json({
+        status: "error",
+      });
+    } else {
+      fs.unlink("public" + rtn.image, (err2) => {
+        if (err2) {
+          res.json({
+            status: "error",
+          });
+        } else {
+          res.json({
+            status: true,
+          });
+        }
+      });
+    }
   });
 };
 
 exports.userAccDelete = (req, res) => {
-  User.findByIdAndDelete(req.params.id, (err) => {
-    if (err) throw err;
-    res.redirect("/admin");
+  User.findByIdAndDelete(req.body.id, (err) => {
+    if (err) {
+      res.json({
+        status: "error",
+      });
+    } else {
+      res.json({
+        status: true,
+      });
+    }
   });
 };
 
@@ -268,6 +301,7 @@ exports.loadCampaignUpdate = (req, res) => {
   }
   let update = {
     title: req.body.title,
+    endDate: req.body.endDate,
     description: req.body.desc,
     update: moment().format("D MMMM YYYY, h:mm:ss A"),
   };
@@ -315,4 +349,48 @@ exports.loadCampaignDataUpdate = (req, res) => {
   );
 };
 
-
+exports.changeStatus = (req, res) => {
+  console.log(req.query);
+  switch (req.query.status) {
+    case "open":
+      Campaign.findByIdAndUpdate(
+        req.query.id,
+        { $set: { status: "open" } },
+        (err) => {
+          if (err) throw err;
+          res.redirect("/admin/campaign-detail/" + req.query.id);
+        }
+      );
+      break;
+    case "close":
+      Campaign.findByIdAndUpdate(
+        req.query.id,
+        { $set: { status: "close" } },
+        (err1) => {
+          if (err1) throw err1;
+          res.redirect("/admin/campaign-detail/" + req.query.id);
+        }
+      );
+      break;
+    case "reopen":
+      Campaign.findByIdAndUpdate(
+        req.query.id,
+        { $set: { status: "open" } },
+        (err2) => {
+          if (err2) throw err2;
+          res.redirect("/admin/campaign-detail/" + req.query.id);
+        }
+      );
+      break;
+    case "finish":
+      Campaign.findByIdAndUpdate(
+        req.query.id,
+        { $set: { status: "finish" } },
+        (err3) => {
+          if (err3) throw err3;
+          res.redirect("/admin/campaign-detail/" + req.query.id);
+        }
+      );
+      break;
+  }
+};

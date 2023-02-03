@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
+const campaign = require("./campaign");
 
 const User = new Schema({
   name: {
@@ -19,10 +20,6 @@ const User = new Schema({
     type: String,
   },
   verify: {
-    type: Boolean,
-    default: false,
-  },
-  votegive: {
     type: Boolean,
     default: false,
   },

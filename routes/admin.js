@@ -37,7 +37,7 @@ router.post(
   adminController.loadCreate
 );
 
-router.get("/campaign-delete/:id", adminController.campaignDelete);
+router.post("/campaign-delete", adminController.campaignDelete);
 
 router.get("/campaign-data/:id", adminAuth, adminController.campaignData);
 
@@ -48,9 +48,9 @@ router.post(
   adminController.loadCampaignData
 );
 
-router.get("/user-delete/:id", adminController.userDelete);
+router.post("/user-delete", adminController.userDelete);
 
-router.get("/user-acc-delete/:id", adminController.userAccDelete);
+router.post("/user-acc-delete", adminController.userAccDelete);
 
 router.post("/change-status", adminController.userEnable);
 
@@ -75,5 +75,7 @@ router.post(
   uploadData.single("image"),
   adminController.loadCampaignDataUpdate
 );
+
+router.get("/change-status", adminAuth, adminController.changeStatus);
 
 module.exports = router;
