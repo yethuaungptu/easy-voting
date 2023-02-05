@@ -5,8 +5,24 @@ const CampaignData = require("../model/campaignData");
 const User = require("../model/user");
 const fs = require("fs");
 const moment = require("moment");
+const cron = require("node-cron");
+const CronJob = require("cron").CronJob;
 
 exports.dashboard = (req, res) => {
+  // cron.schedule("* 1 * * *", () => {
+  //   console.log("running a task every minute");
+  // });
+
+  // console.log("Before job instantiation");
+  // let date = 2;
+  // date.setSeconds(date.getSeconds() + 2);
+  // const job = new CronJob(date, function () {
+  //   const d = new Date();
+  //   console.log("Specific date:", date, ", onTick at:", d);
+  // });
+  // console.log("After job instantiation");
+  // job.start();
+
   User.find((err, rtn) => {
     if (err) throw err;
     User.find({ verify: true }, (err5, rtn5) => {
@@ -350,12 +366,11 @@ exports.loadCampaignDataUpdate = (req, res) => {
 };
 
 exports.changeStatus = (req, res) => {
-  console.log(req.query);
   switch (req.query.status) {
     case "open":
       Campaign.findByIdAndUpdate(
         req.query.id,
-        { $set: { status: "open" } },
+        { $set: { status: "close" } },
         (err) => {
           if (err) throw err;
           res.redirect("/admin/campaign-detail/" + req.query.id);
@@ -365,19 +380,9 @@ exports.changeStatus = (req, res) => {
     case "close":
       Campaign.findByIdAndUpdate(
         req.query.id,
-        { $set: { status: "close" } },
+        { $set: { status: "finish" } },
         (err1) => {
           if (err1) throw err1;
-          res.redirect("/admin/campaign-detail/" + req.query.id);
-        }
-      );
-      break;
-    case "reopen":
-      Campaign.findByIdAndUpdate(
-        req.query.id,
-        { $set: { status: "open" } },
-        (err2) => {
-          if (err2) throw err2;
           res.redirect("/admin/campaign-detail/" + req.query.id);
         }
       );
@@ -385,12 +390,22 @@ exports.changeStatus = (req, res) => {
     case "finish":
       Campaign.findByIdAndUpdate(
         req.query.id,
-        { $set: { status: "finish" } },
-        (err3) => {
-          if (err3) throw err3;
+        { $set: { status: "close" } },
+        (err2) => {
+          if (err2) throw err2;
           res.redirect("/admin/campaign-detail/" + req.query.id);
         }
       );
       break;
   }
+};
+
+exports.loadChangeStatus = (req, res) => {
+  Campaign.findByIdAndUpdate(
+    req.body.campid,
+    { $set: { hour: req.body.hour, minutes: req.body.minutes } },
+    (err) => {
+      if (err) throw err;
+    }
+  );
 };

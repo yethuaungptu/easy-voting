@@ -107,14 +107,14 @@
                   </p>
                 </div>
                 <% if(locals.user) { %> 
-                  <% if(campaign.status == 'open') { %> 
+                  <% if(campaign.status == 'close') { %> 
                     <div style="margin-bottom: 10px;">
                           <div  style="text-align: end">
                             <button class="btn btn-success vote" data-id="<%= campaign.id %>" data-type ="vote" data-camp="<%= campaignData[i].id %>"> vote</button>
                           </div>
                     </div>
                   <% }else{ %> 
-                    <% if(campaign.status == 'close') { %> 
+                    <% if(campaign.status == 'finish') { %> 
                       <h3 class="dtit text-warning card" style="text-align: center;">The campaign has been closed</h3>
                     <% }else{ %> 
                       <h3 class="dtit text-warning card" style="text-align: center;">The campaign is not open yet</h3>
@@ -126,7 +126,7 @@
               </div>
               <% } %>
           </div>
-          <% if(locals.user && campaign.status == 'open') { %>
+          <% if(locals.user && campaign.status == 'close') { %>
             <div style="text-align: end;">
               <div style="border: 1px solid rgba(36, 35, 35, 0.664); margin-bottom: 5px;"></div>
               <a href="/final-camp?userId=<%= locals.user.id %>&campId=<%= campaign.id %>" class="btn btn-primary">Done</a>

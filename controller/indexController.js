@@ -7,19 +7,19 @@ const SMTPConnection = require("nodemailer/lib/smtp-connection");
 const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const CronJob = require("cron").CronJob;
-const { insertMany } = require("../model/user");
+// const { insertMany } = require("../model/user");
 
 exports.index = (req, res) => {
   Campaign.find({ select: "1" })
-    .sort({ create: 1 })
+    .sort({ create: -1 })
     .exec((err, rtn) => {
       if (err) throw err;
       Campaign.find({ select: "2" })
-        .sort({ create: 1 })
+        .sort({ create: -1 })
         .exec((err1, rtn1) => {
           if (err1) throw err1;
           Campaign.find({ select: "3" })
-            .sort({ create: 1 })
+            .sort({ create: -1 })
             .exec((err2, rtn2) => {
               if (err2) throw err2;
               res.render("index", { king: rtn, project: rtn1, other: rtn2 });
@@ -415,5 +415,19 @@ exports.finalCamp = (req, res) => {
 };
 
 exports.resultDetail = (req, res) => {
-  res.render("result-detail");
+  console.log("show me:", req.params.id);
+  Campaign.findById(req.params.id, (err, rtn) => {
+    if (err) throw err;
+    console.log("camp:", rtn);
+    CampaignData.find({ campaignId: req.params.id })
+      .sort({ count: -1 })
+      .exec((err1, rtn1) => {
+        if (err) throw err;
+        res.render("result-detail", { camp: rtn, campdata: rtn1 });
+      });
+  });
+};
+
+exports.about = (req, res) => {
+  res.render("about");
 };

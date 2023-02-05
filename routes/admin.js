@@ -52,7 +52,7 @@ router.post("/user-delete", adminController.userDelete);
 
 router.post("/user-acc-delete", adminController.userAccDelete);
 
-router.post("/change-status", adminController.userEnable);
+router.post("/change-user-status", adminController.userEnable);
 
 router.get("/campaign-update/:id", adminAuth, adminController.campaignUpdate);
 
@@ -77,5 +77,7 @@ router.post(
 );
 
 router.get("/change-status", adminAuth, adminController.changeStatus);
+
+router.post("/change-status", adminAuth, adminController.loadChangeStatus);
 
 module.exports = router;

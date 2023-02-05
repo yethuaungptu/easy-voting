@@ -43,4 +43,6 @@ router.get("/final-camp", indexController.finalCamp);
 
 router.get("/result-detail/:id", indexController.resultDetail);
 
+router.get("/about", indexController.about);
+
 module.exports = router;

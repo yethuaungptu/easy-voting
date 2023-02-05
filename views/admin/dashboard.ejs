@@ -375,7 +375,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       function changestatus(status, id){
-        $.ajax("/admin/change-status",{
+        $.ajax("/admin/change-user-status",{
           type : 'POST',
           data : {status: status, id : id},
           success: function(result){

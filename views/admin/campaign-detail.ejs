@@ -199,10 +199,12 @@
                 <p><%= data.description %></p>
           </div>
         </div>
+        <% if(data.status == 'start'){ %> 
         <div class="card-footer" style="text-align: end;padding:30px;">
           <a href="/admin/campaign-update/<%= data.id %>" class="btn btn-outline-secondary">update campaign </a>  
           <a href="/admin/campaign-data/<%= data.id %>" class="btn btn-primary">add campaign item</a>
         </div>
+        <% } %>
         <div class="row" style="padding: 20px;">
         <% for(var i = 0; i < user.length; i++) { %>
           <div class="card col-lg-4 col-md-4 col-sm-6" style="padding: 10px;">
@@ -220,25 +222,137 @@
                 <p><%= user[i].description %></p>
               </div>
             </div>
-            <!-- <div>
-              
-            </div> -->
+            <% if(data.status == 'start'){ %> 
             <div style="text-align: end;">
               <a href="/admin/campaign-data-update/<%= user[i].id %>" class="btn btn-outline">Update</a>
               <input class="btn btn-danger userDeleted" style="width: 100px;" data-id="<%= user[i].id %>" value="Delete" readonly >
             </div>
+            <% } %>
           </div>
           <% } %>
         </div>
         <div style="border: 1px solid gray;"></div>
         <div style="text-align: end; margin: 10px 30px 10px 0px">
           <% if(data.status === "start"){ %> 
-            <a href="/admin/change-status?status=open&id=<%= data.id %>" class="btn btn-primary" style="width: auto ;">Open Campaign</a>
-          <% }else if(data.status === "open"){ %> 
-            <a href="/admin/change-status?status=close&id=<%= data.id %>" class="btn btn-primary" style="width: auto ;">Close Campaign</a>
-          <% }else if(data.status === "close"){ %> 
-            <a href="/admin/change-status?status=reopen&id=<%= data.id %>" class="btn btn-primary" style="width: auto ;">Reopen Campaign</a>
-            <a href="/admin/change-status?status=finish&id=<%= data.id %>" class="btn btn-primary" style="width: auto ;">Finish Campaign</a>
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-4"></div>
+              <div class="col-4">
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-6">
+                    <label class="form-label" style="text-align: start;">Choose Hour</label>
+                    <select id="hour" class="form-select">
+                      <option class="text-primary" style="font-weight: bold;" disabled>Hour</option>
+                      <option value="00" selected>00</option>
+                      <option value="01" >01</option>
+                      <option value="02" >02</option>
+                      <option value="03" >03</option>
+                      <option value="04" >04</option>
+                      <option value="05" >05</option>
+                      <option value="06" >06</option>
+                      <option value="07" >07</option>
+                      <option value="08" >08</option>
+                      <option value="09" >09</option>
+                      <option value="10" >10</option>
+                      <option value="11" >11</option>
+                      <option value="12" >12</option>
+                      <option value="13" >13</option>
+                      <option value="14" >14</option>
+                      <option value="15" >15</option>
+                      <option value="16" >16</option>
+                      <option value="17" >17</option>
+                      <option value="18" >18</option>
+                      <option value="19" >19</option>
+                      <option value="20" >20</option>
+                      <option value="21" >21</option>
+                      <option value="22" >22</option>
+                      <option value="23" >23</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label" style="text-align: start;">Choose Minutes</label>
+                    <select id="minutes" class="form-select">
+                      <option class="text-primary" style="font-weight: bold;" disabled>Minutes</option>
+                      <option value="00" selected>00</option>
+                      <option value="05" >05</option>
+                      <option value="10" >10</option>
+                      <option value="15" >15</option>
+                      <option value="20" >20</option>
+                      <option value="25" >25</option>
+                      <option value="30" >30</option>
+                      <option value="35" >35</option>
+                      <option value="40" >40</option>
+                      <option value="45" >45</option>
+                      <option value="50" >50</option>
+                      <option value="55" >55</option>
+                      <option value="59" >59</option>
+                    </select>
+                  </div>
+                </div>
+            </div>
+          </div> 
+            <a href="/admin/change-status?status=open&id=<%= data.id %>" class="btn btn-primary open" style="width: auto ;" data-campid="<%= data.id %>">Open Campaign</a>
+          <% }else if(data.status === "close"){ %>
+            <a href="/admin/change-status?status=close&id=<%= data.id %>" class="btn btn-primary" style="width: auto ;" >Close Campaign</a>
+          <% }else if(data.status === "finish"){ %> 
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-4"></div>
+              <div class="col-4">
+                <div class="row" style="margin-bottom: 10px;">
+                  <div class="col-6">
+                    <label class="form-label" style="text-align: start;">Choose Hour</label>
+                    <select id="hour" class="form-select">
+                      <option class="text-primary" style="font-weight: bold;" disabled>Hour</option>
+                      <option value="00" selected>00</option>
+                      <option value="01" >01</option>
+                      <option value="02" >02</option>
+                      <option value="03" >03</option>
+                      <option value="04" >04</option>
+                      <option value="05" >05</option>
+                      <option value="06" >06</option>
+                      <option value="07" >07</option>
+                      <option value="08" >08</option>
+                      <option value="09" >09</option>
+                      <option value="10" >10</option>
+                      <option value="11" >11</option>
+                      <option value="12" >12</option>
+                      <option value="13" >13</option>
+                      <option value="14" >14</option>
+                      <option value="15" >15</option>
+                      <option value="16" >16</option>
+                      <option value="17" >17</option>
+                      <option value="18" >18</option>
+                      <option value="19" >19</option>
+                      <option value="20" >20</option>
+                      <option value="21" >21</option>
+                      <option value="22" >22</option>
+                      <option value="23" >23</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label" style="text-align: start;">Choose Minutes</label>
+                    <select id="minutes" class="form-select">
+                      <option class="text-primary" style="font-weight: bold;" disabled>Minutes</option>
+                      <option value="00" selected>00</option>
+                      <option value="05" >05</option>
+                      <option value="10" >10</option>
+                      <option value="15" >15</option>
+                      <option value="20" >20</option>
+                      <option value="25" >25</option>
+                      <option value="30" >30</option>
+                      <option value="35" >35</option>
+                      <option value="40" >40</option>
+                      <option value="45" >45</option>
+                      <option value="50" >50</option>
+                      <option value="55" >55</option>
+                      <option value="59" >59</option>
+                    </select>
+                  </div>
+                </div>
+            </div>
+          </div>
+            <a href="/admin/change-status?status=finish&id=<%= data.id %>" class="btn btn-primary open" style="width: auto ;" data-campid="<%= data.id %>">Reopen Campaign</a>
           <% } %>
         </div>
       </div>
@@ -274,7 +388,6 @@
                   class="link-secondary"
                   rel="noopener"
                 >
-                  <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon text-pink icon-filled icon-inline"
@@ -348,6 +461,23 @@
                 })
             }
           })
+      })
+
+
+
+
+    </script>
+    <script>
+
+      $(".open").click(function(){
+        let hour = $("#hour").val();
+        let minutes = $("#minutes").val();
+        let campid = $(this).data("campid")
+        $.ajax({
+                url:"/admin/change-status",
+                data:{hour, minutes, campid},
+                type: 'POST'
+              })
       })
       
     </script>

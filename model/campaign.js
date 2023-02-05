@@ -31,6 +31,12 @@ const Campaign = new Schema({
     type: String,
     default: "start",
   },
+  hour: {
+    type: String,
+  },
+  minutes: {
+    type: String,
+  },
   update: {
     type: String,
   },
