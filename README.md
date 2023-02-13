@@ -8,6 +8,6 @@ To run this project, you will need to add the following environment variables to
 
 sessionKey = easyvote@2023
 
-USER_EMAIL = "project3kings@gmail.com"
+USER_EMAIL = "ucspyay2023@gmail.com"
 
-PASSWORD = "yghiubpxvirglzjo"
+PASSWORD = "ocpjfaiarcxbphky"

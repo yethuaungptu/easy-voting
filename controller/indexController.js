@@ -7,7 +7,6 @@ const SMTPConnection = require("nodemailer/lib/smtp-connection");
 const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const CronJob = require("cron").CronJob;
-// const { insertMany } = require("../model/user");
 
 exports.index = (req, res) => {
   Campaign.find({ select: "1" })
@@ -92,11 +91,14 @@ const sendVerifyMail = async (name, email, User_id) => {
       to: email,
       subject: "For Email Verification",
       html:
-        "<p>Hi " +
+        "<h1 style='color:#3C84AB;'>Welcome to Easy Vote</h1>" +
+        "<p> <h3>Hi, " +
         name +
-        '<br/>Click confirm to <buttom><a href="http://127.0.0.1:3000/verify-login?id=' +
+        "</h3>" +
+        "<h3>You need to verify your account to login.So click " +
+        "<a href='http://127.0.0.1:3000/verify-login?id=" +
         User_id +
-        '">verify</a></buttom> your account</p>',
+        "'>verify</a> and confirm your email. </h3>",
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -183,11 +185,13 @@ const sendforgetPassword = async (name, email, id) => {
       to: email,
       subject: "Forget password",
       html:
-        "<p>Hi " +
+        "<h1 style='color:#3C84AB;'>Welcome to Easy Vote</h1>" +
+        "<p> <h3>Hi " +
         name +
+        "</h3>" +
         ',Click reset password to <a href="http://127.0.0.1:3000/reset-password?token=' +
         id +
-        '">create a new password</a>ကိုနှိပ်ပါ။</p>',
+        '">create a new password</a></p>',
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
