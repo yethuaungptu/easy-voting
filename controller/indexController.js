@@ -45,7 +45,7 @@ exports.loadLogin = (req, res) => {
       } else {
         if (rtn.verify != true) {
           res.render("login", {
-            verifyEmail: "Your email is not yet verified, so please confirm",
+            verifyEmail: "Your mail is not yet verified, so please confirm",
           });
         } else {
           if (
@@ -130,13 +130,13 @@ exports.loadSignUp = async (req, res) => {
       sendVerifyMail(req.body.name, req.body.email, user._id);
       res.render("sign-up", {
         done: "You have successfully singup",
-        ckeck: "Check your email to confirm",
+        ckeck: "Check your mail to confirm",
       });
     }
   }
 
   let checkEmail = req.body.email;
-  if (checkEmail.endsWith("@gmail.com")) {
+  if (checkEmail.endsWith("@ucspyay.edu.mm")) {
     User.findOne({ email: req.body.email }, (err, rtn) => {
       if (err) throw err;
       if (rtn == null) {
@@ -157,7 +157,7 @@ exports.loadSignUp = async (req, res) => {
       }
     });
   } else {
-    res.render("sign-up", { message: "Sign Up With @edu.mm" });
+    res.render("sign-up", { message: "Sign Up With @ucspyay.edu.mm" });
   }
 };
 
