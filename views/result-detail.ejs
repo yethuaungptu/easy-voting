@@ -121,7 +121,7 @@
               <div class="progress progress-xs">
                 <div
                   class="progress-bar bg-primary"
-                  style="width: <%= Math.round(results) %>%"
+                  style="width: <%= Math.round(results)? Math.round(results): 0 %>%"
                 >
                   <%= Math.round(results) %>%
                 </div>
