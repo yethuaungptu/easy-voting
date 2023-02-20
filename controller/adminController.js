@@ -6,7 +6,10 @@ const User = require("../model/user");
 const fs = require("fs");
 const moment = require("moment");
 const cron = require("node-cron");
-const CronJob = require("cron").CronJob;
+const EventEmitter = require("events");
+const event = new EventEmitter();
+// const CronJob = require("node-cron").CronJob;
+// var CronJob = require("cron").CronJob;
 
 exports.dashboard = (req, res) => {
   // cron.schedule("* 1 * * *", () => {
@@ -401,9 +404,28 @@ exports.changeStatus = (req, res) => {
 };
 
 exports.loadChangeStatus = (req, res) => {
+  const totalT =
+    (Number(req.body.hour) * 3600 + Number(req.body.minutes) * 60) * 1000;
+  setTimeout(() => {
+    Campaign.findByIdAndUpdate(
+      req.body.campid,
+      { $set: { status: "finish" } },
+      (err) => {
+        if (err) throw err;
+        res.redirect(req.originalUrl);
+      }
+    );
+  }, totalT);
+
   Campaign.findByIdAndUpdate(
     req.body.campid,
-    { $set: { hour: req.body.hour, minutes: req.body.minutes } },
+    {
+      $set: {
+        hour: req.body.hour,
+        minutes: req.body.minutes,
+        update: Date.now(),
+      },
+    },
     (err) => {
       if (err) throw err;
     }
