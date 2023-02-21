@@ -16,7 +16,9 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-mongoose.connect("mongodb://127.0.0.1/easyvote");
+mongoose.connect(
+  "mongodb+srv://naychi:naychi123@easyvote.mrrbyog.mongodb.net/?retryWrites=true&w=majority"
+);
 var db = mongoose.connection;
 db.on("error", console.error.bind("MongoDB connection error "));
 db.on("connected", () => console.log("Database connected!"));
