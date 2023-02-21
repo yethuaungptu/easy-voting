@@ -6,8 +6,8 @@ Easy Vote
 
 To run this project, you will need to add the following environment variables to your .env file
 
-sessionKey = easyvote@2023
+sessionKey = 12easyvote@202312
 
-USER_EMAIL = "ucspyay2023@gmail.com"
+USER_EMAIL = "ucspyay202312@gmail.com"
 
-PASSWORD = "ocpjfaiarcxbphky"
+PASSWORD = "21ocpjfaiarcxbphky21"
