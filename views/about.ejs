@@ -5,62 +5,99 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
+    <!-- CSS files -->
+    <link href="/stylesheets/css/tabler.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="/stylesheets/css/demo.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Permanent Marker"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Alice"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=DM Serif Text"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fugaz One"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Righteous"
+    />
+    <style>
+      .font {
+        font-family: "Permanent Marker", serif;
+      }
+      .font1 {
+        font-family: "Alice", serif;
+      }
+      .tit {
+        font-family: "Fugaz One", serif;
+      }
+      .cmptit {
+        font-family: "DM Serif Text", serif;
+        font-size: 20px;
+      }
+      .logo {
+        font-family: "Righteous", serif;
+        font-size: 30px;
+      }
+      .move {
+        padding: 50px 10px 10px 40px;
+        font-size: 30px;
+        color: rgb(8, 6, 6);
+        font-weight: lighter;
+      }
+      .text {
+        margin: 50px 10px 10px 40px;
+      }
+    </style>
   </head>
   <body>
-    <!-- about start  -->
-    <div class="card-header">
-      <h3 class="card-title">About</h3>
-    </div>
-    <!-- left side start  -->
-    <div class="col-12">
-      <div class="card">
-        <div class="row row-0">
-          <div class="col-12 col-md-4 col-lg-4">
-            <img
-              src="images/profile.jpg"
-              class="w-100 h-100 object-cover"
-              alt="Card side image"
-            />
-          </div>
-          <div class="col-12 col-md-8 col-lg-8">
-            <div class="card-body">
-              <h3 class="card-title">Card with left side image</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aperiam deleniti fugit incidunt, iste, itaque minima neque
-                pariatur perferendis sed suscipit velit vitae voluptatem.
-              </p>
-            </div>
-          </div>
+    <% include ./partials/nav %>
+    <div class="container">
+      <div
+        class="text-center m-2 font1"
+        style="font-size: 80px; text-shadow: 5px 5px 5px gray"
+      >
+        About Us
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 card">
+          <img
+            src="/images/img/image_2.jpg"
+            alt=""
+            width="auto"
+            height="auto"
+          />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <p class="font1 mt-1 p-1" style="font-size: 20px">
+            In the era of increasing IT, many people tend to connect online. Our
+            school holds voting events every year. Therefore, I wrote Easy
+            Voting System For University Campaign because an online voting
+            system would be helpful for our school. The information included in
+            the system is only real data, so it is helpful in data storage in
+            the school. I have also received advice and help from all sides to
+            make this system accurate and secure. This system can be accessed
+            and used not only by students in UCS Pyay, but also by others.
+            Mainly, any voting campaign in our school will be easily created and
+            used easily.
+          </p>
         </div>
       </div>
     </div>
-    <!-- left side end -->
-    <!-- right side start  -->
-    <div class="col-12">
-      <div class="card">
-        <div class="row row-0">
-          <div class="col-12 col-md-8 col-lg-8">
-            <div class="card-body">
-              <h3 class="card-title">Card with left side image</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aperiam deleniti fugit incidunt, iste, itaque minima neque
-                pariatur perferendis sed suscipit velit vitae voluptatem.
-              </p>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 col-lg-4">
-            <img
-              src="images/profile.jpg"
-              class="w-100 h-100 object-cover"
-              alt="Card side image"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- right side end -->
-    <!-- about end -->
+
+    <% include ./partials/footer %>
+
+    <script src="/javascripts/js/demo.min.js"></script>
+    <script src="/javascripts/js/tabler.min.js"></script>
   </body>
 </html>
