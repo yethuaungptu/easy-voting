@@ -138,7 +138,7 @@ exports.loadSignUp = async (req, res) => {
   }
 
   let checkEmail = req.body.email;
-  if (checkEmail.endsWith("@ucspyay.edu.mm")) {
+  if (checkEmail.endsWith("@gmail.com")) {
     User.findOne({ email: req.body.email }, (err, rtn) => {
       if (err) throw err;
       if (rtn == null) {
@@ -159,7 +159,7 @@ exports.loadSignUp = async (req, res) => {
       }
     });
   } else {
-    res.render("sign-up", { message: "Sign Up With @ucspyay.edu.mm" });
+    res.render("sign-up", { message: "Sign Up With @gmail.com" });
   }
 };
 
