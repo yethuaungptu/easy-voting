@@ -70,18 +70,39 @@
                 <% }else{ %>
                 <h1 class="pt-2 font">Winner</h1>
                 <% } %>
-                <h2 class="name"><%= campdata[0].name %></h2>
               </div>
-              <img
-                src="<%= campdata[0].image %>"
-                alt=""
-                style="
-                  width: auto;
-                  height: 600px;
-                  border-bottom-right-radius: 10px;
-                  border-bottom-left-radius: 10px;
-                "
-              />
+              <div class="row justify-content-center">
+                <div class="col-md-4 text-center">
+                  <h2 class="font">First</h2>
+                  <h2 class="name"><%= campdata[0].name %></h2>
+                  <img
+                    src="<%= campdata[0].image %>"
+                    alt=""
+                    style="width: 250px; height: 200px; border-radius: 20px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 text-center">
+                  <h2 class="font">Second</h2>
+                  <h2 class="name"><%= campdata[1].name %></h2>
+                  <img
+                    src="<%= campdata[1].image %>"
+                    alt=""
+                    style="width: 200px; height: 200px; border-radius: 20px"
+                  />
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-center mb-5">
+                  <h2 class="font">Third</h2>
+                  <h2 class="name"><%= campdata[2].name %></h2>
+                  <img
+                    src="<%= campdata[2].image %>"
+                    alt=""
+                    style="width: 200px; height: 200px; border-radius: 20px"
+                  />
+                </div>
+              </div>
             </div>
             <% }else{ %>
             <div class="card bg-purple-lt" style="text-align: center">

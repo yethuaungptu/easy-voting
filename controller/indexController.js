@@ -419,10 +419,8 @@ exports.finalCamp = (req, res) => {
 };
 
 exports.resultDetail = (req, res) => {
-  console.log("show me:", req.params.id);
   Campaign.findById(req.params.id, (err, rtn) => {
     if (err) throw err;
-    console.log("camp:", rtn);
     CampaignData.find({ campaignId: req.params.id })
       .sort({ count: -1 })
       .exec((err1, rtn1) => {
